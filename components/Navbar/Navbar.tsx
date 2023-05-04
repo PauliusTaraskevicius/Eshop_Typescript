@@ -1,8 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 
 import Image from "next/image";
 import NavbarItem from "./NavbarItem";
 import MobileMenu from "./MobileMenu";
+
+import useLoginModal from "@/hooks/useLoginModal";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 import blacklogo from "../../public/images/black-logo.png";
 import whitelogo from "../../public/images/logo.png";
@@ -15,6 +20,18 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [navbarLogo, setNavbarLogo] = useState(whitelogo);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const router = useRouter();
+  const loginModal = useLoginModal();
+  const { data: currentUser } = useCurrentUser();
+
+  const onClick = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    router.push("/");
+  }, [currentUser, loginModal, router]);
 
   const changeChangeBackground = () => {
     if (window.scrollY >= TOP_OFFSET) {
@@ -46,7 +63,6 @@ const Navbar = () => {
 
   return (
     <nav
-      // className={showMobileMenu ? 'fixed z-40 w-full bg-white py-5 text-black ' : 'fixed z-40 mt-5 w-full  text-white lg:mt-[81px]'}
       className={
         navbar || showMobileMenu
           ? "fixed z-40 w-full transform bg-white py-5 text-black transition-[padding] duration-200 ease-linear"
@@ -73,7 +89,16 @@ const Navbar = () => {
           </div>
 
           <div className="ml-auto flex justify-end gap-20">
-            <NavbarItem label="Login" />
+            {currentUser ? (
+              <div onClick={onClick}>
+                <NavbarItem label="Logout" onClick={() => signOut()} />
+              </div>
+            ) : (
+              <div onClick={onClick}>
+                <NavbarItem label="Login" onClick={loginModal.onOpen} />
+              </div>
+            )}
+
             <NavbarItem label="Bag" />
           </div>
 
@@ -111,8 +136,8 @@ const Navbar = () => {
                   }`
             }
           />
-          
-          <MobileMenu visible={showMobileMenu} />
+
+          <MobileMenu visible={showMobileMenu} onClick={onClick}/>
         </div>
       </div>
     </nav>

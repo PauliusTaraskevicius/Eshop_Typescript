@@ -1,12 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+import { useRouter } from "next/router";
+
+import useLoginModal from "@/hooks/useLoginModal";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 interface NavbarItemProps {
   label: string;
+  onClick?: () => void;
 }
 
 const TOP_OFFSET = 66;
 
-const NavbarItem: React.FC<NavbarItemProps> = ({ label }) => {
+const NavbarItem: React.FC<NavbarItemProps> = ({ label, onClick }) => {
+  const router = useRouter();
+  const loginModal = useLoginModal();
+
+  const { data: currentUser } = useCurrentUser();
+
   const [underline, setUnderline] = useState(false);
 
   const changeUnderline = () => {
@@ -19,8 +30,19 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ label }) => {
     window.addEventListener("scroll", changeUnderline);
   }, []);
 
+  const handleClick = useCallback(() => {
+    if (onClick) {
+      return onClick();
+    }
+
+    if (!currentUser) {
+      loginModal.onOpen();
+    }
+  }, [loginModal, currentUser, onClick]);
+
   return (
     <div
+      onClick={handleClick}
       className={
         underline
           ? "relative cursor-pointer before:absolute before:-bottom-[1.5px] before:left-0 before:block before:h-[1px] before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition before:duration-300 before:ease-in-out before:content-[''] before:hover:scale-x-100"

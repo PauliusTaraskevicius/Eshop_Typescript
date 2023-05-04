@@ -1,10 +1,20 @@
+
+import { signOut } from "next-auth/react";
+
+import useLoginModal from "@/hooks/useLoginModal";
+import useCurrentUser from "@/hooks/useCurrentUser";
+
 import FadeInAnimation from "../ui/FadeInAnimation";
 
 interface MobileMenuProps {
   visible?: boolean;
+  onClick: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ visible, onClick }) => {
+  const loginModal = useLoginModal();
+  const { data: currentUser } = useCurrentUser();
+
   if (!visible) {
     return null;
   }
@@ -19,7 +29,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ visible }) => {
               About
             </div>
 
-            <div className="mb-4 px-3 text-left text-sm text-black">Login</div>
+            {currentUser ? (
+              <div onClick={onClick}>
+                <div
+                  className="mb-4 px-3 text-left text-sm text-black"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </div>
+              </div>
+            ) : (
+              <div onClick={onClick}>
+                <div
+                  className="mb-4 px-3 text-left text-sm text-black"
+                  onClick={loginModal.onOpen}
+                >
+                  Login
+                </div>
+              </div>
+            )}
+
             <div className="mb-4 px-3 text-left text-sm text-black">
               Contact Us
             </div>
