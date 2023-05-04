@@ -92,6 +92,7 @@ const Navbar = () => {
             {currentUser ? (
               <div onClick={onClick}>
                 <NavbarItem label="Logout" onClick={() => signOut()} />
+                
               </div>
             ) : (
               <div onClick={onClick}>

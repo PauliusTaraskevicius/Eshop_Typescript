@@ -47,7 +47,9 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <div className="relative w-full lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50">
+      {/* relative w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-10 */}
+
+      <div className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50">
         <div
           className="h-full
             lg:h-auto
@@ -60,7 +62,10 @@ const Modal: React.FC<ModalProps> = ({
             w-full 
             bg-black 
             outline-none 
-            focus:outline-none"
+            focus:outline-none
+            overflow-y-scroll
+            lg:overflow-y-hidden
+            "
         >
           <div
             className=" flex 

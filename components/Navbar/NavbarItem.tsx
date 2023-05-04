@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 
-import { useRouter } from "next/router";
-
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
@@ -13,7 +11,6 @@ interface NavbarItemProps {
 const TOP_OFFSET = 66;
 
 const NavbarItem: React.FC<NavbarItemProps> = ({ label, onClick }) => {
-  const router = useRouter();
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
@@ -42,7 +39,7 @@ const NavbarItem: React.FC<NavbarItemProps> = ({ label, onClick }) => {
 
   return (
     <div
-      onClick={handleClick}
+      onClick={label === "Logout" ? handleClick : undefined}
       className={
         underline
           ? "relative cursor-pointer before:absolute before:-bottom-[1.5px] before:left-0 before:block before:h-[1px] before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition before:duration-300 before:ease-in-out before:content-[''] before:hover:scale-x-100"
