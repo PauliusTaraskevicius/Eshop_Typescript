@@ -48,7 +48,6 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <>
       {/* relative w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-10 */}
-
       <div className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50">
         <div
           className="h-full
