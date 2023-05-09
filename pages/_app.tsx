@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Layout from "@/components/Layout";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
+import CategoryModal from "@/components/Modals/CategoryModal";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Toaster />
       <RegisterModal />
       <LoginModal />
+      <CategoryModal />
       <Layout>
         <Component {...pageProps} />
       </Layout>

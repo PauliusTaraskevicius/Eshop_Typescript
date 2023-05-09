@@ -65,3 +65,32 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Category {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  products Product[] 
+}
+
+model Product {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  price Float
+  thumbnail String
+  image1 String?
+  image2 String?
+  image3 String?
+  image4 String?
+  brand String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String @db.ObjectId
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  currentInventory Int
+  description      String
+}

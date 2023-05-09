@@ -34,7 +34,7 @@ const featured_product = [
   {
     model: "Quartz",
     year_made: 2022,
-    price: 1200,
+    price: 1280,
     thumbail: "/images/thumbnail_1.jpg",
     picture_1: "/images/picture_1.jpg",
     picture_2: "https://img.icons8.com/color/180/null/apple-calculator.png",
@@ -43,7 +43,7 @@ const featured_product = [
   },
 ];
 
-const TOP_OFFSET = 200;
+const TOP_OFFSET = 400;
 
 const ProductFeed = () => {
   const [scaleDownThumbnail, setScaleDownThumbnail] = useState(false);
@@ -51,6 +51,7 @@ const ProductFeed = () => {
   const scaleDown = () => {
     if (window.scrollY >= TOP_OFFSET) {
       setScaleDownThumbnail(true);
+
     } else {
       setScaleDownThumbnail(false);
     }
@@ -73,8 +74,8 @@ const ProductFeed = () => {
                       ? "transition duration-1000 ease-in-out scale-125"
                       : "transition duration-1000 ease-in-out "
                   }
-                  width="1200"
-                  height="3600"
+                  width="1280"
+                  height="720"
                   src={post.thumbail}
                   alt="thumbnail"
                   unoptimized
@@ -84,8 +85,8 @@ const ProductFeed = () => {
             <div className="md:w-2/5">
               <div className="relative flex justify-center">
                 <Image
-                  width="1200"
-                  height="3600"
+                  width="1280"
+                  height="720"
                   src={post.picture_1}
                   alt="thumbnail"
                   unoptimized
@@ -113,28 +114,28 @@ const ProductFeed = () => {
       ))}
 
       {women.map((post) => (
-        <div className="w-full ">
+        <div className="w-full">
           <div className="flex flex-col justify-between items-center md:flex-row">
             <div></div>
-            <div></div>
-            <div className="md:w-2/5">
+
+            <div className="md:w-1/2">
               <div className="block ">
                 <Image
-                  width="1200"
-                  height="3600"
+                  width="1280"
+                  height="720"
                   src={post.thumbail}
                   alt="thumbnail"
                   unoptimized
                 />
               </div>
             </div>
-            <div></div>
+
             <div className="md:w-1/2">
               <div className="relative flex justify-center overflow-hidden">
                 <Image
-
-                  width="1200"
-                  height="3600"
+                
+                  width="1280"
+                  height="720"
                   src={post.picture_1}
                   alt="thumbnail"
                   unoptimized

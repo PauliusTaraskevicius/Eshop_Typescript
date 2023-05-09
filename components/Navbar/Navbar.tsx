@@ -8,6 +8,7 @@ import MobileMenu from "./MobileMenu";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import useCategoryModal from "@/hooks/useCategoryModal";
 
 import blacklogo from "../../public/images/black-logo.png";
 import whitelogo from "../../public/images/logo.png";
@@ -25,6 +26,8 @@ const Navbar = () => {
   const loginModal = useLoginModal();
   const { data: currentUser } = useCurrentUser();
 
+  const categoryModal = useCategoryModal();
+
   const onClick = useCallback(() => {
     if (!currentUser) {
       return loginModal.onOpen();
@@ -32,6 +35,11 @@ const Navbar = () => {
 
     router.push("/");
   }, [currentUser, loginModal, router]);
+
+  const categoryOnClick = useCallback(() => {
+    return categoryModal.onOpen();
+    router.push('/')
+  }, [])
 
   const changeChangeBackground = () => {
     if (window.scrollY >= TOP_OFFSET) {
@@ -70,7 +78,7 @@ const Navbar = () => {
       }
     >
       <div className="text-md flex flex-row items-center py-6 lg:px-[205px]">
-        <span className="px-4 pr-[21px]  font-normal sm:px-4">Eleganza</span>
+        <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
         <Image
           width={25}
           height={25}
@@ -92,14 +100,18 @@ const Navbar = () => {
             {currentUser ? (
               <div onClick={onClick}>
                 <NavbarItem label="Logout" onClick={() => signOut()} />
-                
               </div>
             ) : (
               <div onClick={onClick}>
                 <NavbarItem label="Login" onClick={loginModal.onOpen} />
               </div>
             )}
-
+            <div onClick={categoryOnClick}>
+            <NavbarItem
+              label="Create category"
+              onClick={categoryModal.onOpen}
+            />
+            </div>
             <NavbarItem label="Bag" />
           </div>
 
@@ -138,7 +150,7 @@ const Navbar = () => {
             }
           />
 
-          <MobileMenu visible={showMobileMenu} onClick={onClick}/>
+          <MobileMenu visible={showMobileMenu} onClick={onClick} />
         </div>
       </div>
     </nav>
