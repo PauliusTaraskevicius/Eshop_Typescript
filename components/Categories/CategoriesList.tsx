@@ -1,4 +1,4 @@
-import useCategories from "@/hooks/useCategories";
+import useCategories from "@/hooks/Categories/useCategories";
 
 import CategoryItem from "./CategoryItem";
  

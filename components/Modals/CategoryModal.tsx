@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 import Input from "../Input";
 import Modal from "../Modal";
 
-import useCategoryModal from "@/hooks/useCategoryModal";
+import useCategoryModal from "@/hooks/Categories/useCategoryModal";
 
 const CategoryModal = () => {
   const categoryModal = useCategoryModal();

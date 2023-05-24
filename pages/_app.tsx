@@ -8,6 +8,7 @@ import Layout from "@/components/Layout";
 import LoginModal from "@/components/Modals/LoginModal";
 import RegisterModal from "@/components/Modals/RegisterModal";
 import CategoryModal from "@/components/Modals/CategoryModal";
+import ProductModal from "@/components/Modals/ProductModal";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <RegisterModal />
       <LoginModal />
       <CategoryModal />
+      <ProductModal />
       <Layout>
         <Component {...pageProps} />
       </Layout>
