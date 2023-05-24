@@ -3,9 +3,10 @@ import { useCallback, useMemo } from "react";
 
 interface CategoryItemProps {
   data: Record<string, any>;
+  userId?: string;
 }
 
-const CategoryItem: React.FC<CategoryItemProps> = ({ data = {} }) => {
+const CategoryItem: React.FC<CategoryItemProps> = ({ data = {}, userId }) => {
   const router = useRouter();
 
   const goToCategory = useCallback(() => {

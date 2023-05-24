@@ -18,7 +18,7 @@ export default async function handler(
     }
 
     if (!userId) {
-      throw new Error("Invalid ID");
+      throw new Error("Invalid ID"); 
     }
 
     const category = await prisma.category.findUnique({

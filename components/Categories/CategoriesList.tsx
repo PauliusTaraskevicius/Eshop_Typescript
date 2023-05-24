@@ -2,13 +2,17 @@ import useCategories from "@/hooks/useCategories";
 
 import CategoryItem from "./CategoryItem";
 
-const CategoriesList = () => {
-  const { data: categories = [] } = useCategories();
+interface CategoriesListProps {
+  userId?: string;
+}
+
+const CategoriesList: React.FC<CategoriesListProps> = ({ userId }) => {
+  const { data: categories = [] } = useCategories(userId);
 
   return (
     <div>
       {categories.map((category: Record<string, any>) => (
-        <CategoryItem  key={category.id} data={category} />
+        <CategoryItem userId={userId} key={category.id} data={category} />
       ))}
     </div>
   );

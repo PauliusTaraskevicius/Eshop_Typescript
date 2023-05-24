@@ -23,8 +23,6 @@ const CategoryModal = () => {
         name,
       });
 
-      setIsLoading(false);
-
       toast.success("Category created");
       setName("");
       categoryModal.onClose();
