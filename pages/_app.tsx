@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <RegisterModal />
       <LoginModal />
       <CategoryModal />
+
       <Layout>
         <Component {...pageProps} />
       </Layout>

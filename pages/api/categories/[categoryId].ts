@@ -11,19 +11,19 @@ export default async function handler(
   }
 
   try {
-    const { categoryId } = req.query;
+    const { userId } = req.query;
 
-    if (typeof categoryId !== "string") {
+    if (typeof userId !== "string") {
       throw new Error("Invalid ID");
     }
 
-    if (!categoryId) {
+    if (!userId) {
       throw new Error("Invalid ID");
     }
 
     const category = await prisma.category.findUnique({
       where: {
-        id: categoryId,
+        id: userId,
       },
     });
 

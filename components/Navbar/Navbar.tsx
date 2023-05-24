@@ -38,8 +38,8 @@ const Navbar = () => {
 
   const categoryOnClick = useCallback(() => {
     return categoryModal.onOpen();
-    router.push('/')
-  }, [])
+    router.push("/");
+  }, []);
 
   const changeChangeBackground = () => {
     if (window.scrollY >= TOP_OFFSET) {
@@ -107,10 +107,10 @@ const Navbar = () => {
               </div>
             )}
             <div onClick={categoryOnClick}>
-            <NavbarItem
-              label="Create category"
-              onClick={categoryModal.onOpen}
-            />
+              <NavbarItem
+                label="Create category"
+                onClick={categoryModal.onOpen}
+              />
             </div>
             <NavbarItem label="Bag" />
           </div>

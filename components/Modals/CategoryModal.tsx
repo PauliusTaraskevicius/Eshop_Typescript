@@ -26,7 +26,7 @@ const CategoryModal = () => {
       setIsLoading(false);
 
       toast.success("Category created");
-
+      setName("");
       categoryModal.onClose();
     } catch (error) {
       toast.error("Something went wrong");
