@@ -11,7 +11,7 @@ const useCategories = (userId?: string) => {
     error,
     isLoading,
     mutate,
-  };
+  }; 
 };
 
 export default useCategories;

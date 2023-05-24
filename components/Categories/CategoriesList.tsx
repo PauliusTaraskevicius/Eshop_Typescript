@@ -1,7 +1,7 @@
 import useCategories from "@/hooks/useCategories";
 
 import CategoryItem from "./CategoryItem";
-
+ 
 interface CategoriesListProps {
   userId?: string;
 }

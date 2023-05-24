@@ -47,7 +47,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ data = {}, userId }) => {
           "
           >
    
-            <p>{data.name}</p>
+            <p>{data.name} - {data.userId}</p>
           </div>
          
         </div>
