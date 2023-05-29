@@ -19,34 +19,32 @@ export default async function handler(
         price,
         thumbnail,
         brand,
-        category,
         currentInventory,
         description,
-        user,
       } = req.body;
 
       const product = await prisma.product.create({
         data: {
           name,
-          price,
+          price: parseFloat(price),
           thumbnail,
           brand,
-          category,
-          currentInventory,
+          currentInventory: parseInt(currentInventory),
           description,
-          user,
-          userId: currentUser.id,
-          categoryId: category.id,
+          user: {
+            connect: {
+              id: currentUser.id,
+            },
+          },
         },
       });
-
       return res.status(200).json(product);
     }
 
     if (req.method === "GET") {
       const { userId } = req.query;
 
-      console.log({ userId });
+      // console.log({ userId });
 
       let products;
 

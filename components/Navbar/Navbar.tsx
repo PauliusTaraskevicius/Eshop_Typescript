@@ -9,7 +9,6 @@ import MobileMenu from "./MobileMenu";
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
 
-import useCategoryModal from "@/hooks/Categories/useCategoryModal";
 import useProductModal from "@/hooks/Products/useProductModal";
 
 import blacklogo from "../../public/images/black-logo.png";
@@ -28,7 +27,6 @@ const Navbar = () => {
   const loginModal = useLoginModal();
   const { data: currentUser } = useCurrentUser();
 
-  const categoryModal = useCategoryModal();
   const productModal = useProductModal()
 
   const onClick = useCallback(() => {
@@ -39,10 +37,6 @@ const Navbar = () => {
     router.push("/");
   }, [currentUser, loginModal, router]);
 
-  const categoryOnClick = useCallback(() => {
-    return categoryModal.onOpen();
-    router.push("/");
-  }, []);
 
   const productOnClick = useCallback(() => {
     return productModal.onOpen();
@@ -114,12 +108,7 @@ const Navbar = () => {
                 <NavbarItem label="Login" onClick={loginModal.onOpen} />
               </div>
             )}
-            <div onClick={categoryOnClick}>
-              <NavbarItem
-                label="Create category"
-                onClick={categoryModal.onOpen}
-              />
-            </div>
+
 
             <div onClick={productOnClick}>
               <NavbarItem

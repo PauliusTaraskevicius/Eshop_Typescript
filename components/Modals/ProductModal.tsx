@@ -9,17 +9,14 @@ import Modal from "../Modal";
 import ImageUpload from "../ImageUpload";
 
 import useProductModal from "@/hooks/Products/useProductModal";
-import useCategories from "@/hooks/Categories/useCategories";
 
 const ProductModal = () => {
   const productModal = useProductModal();
-  const { data: categories = [] } = useCategories();
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
   const [currentInventory, setCurrentInventory] = useState("");
   const [description, setDescription] = useState("");
 
@@ -31,17 +28,35 @@ const ProductModal = () => {
 
       await axios.post("/api/products", {
         name,
+        price,
+        thumbnail,
+        brand,
+        currentInventory,
+        description,
       });
 
       toast.success("Product created");
       setName("");
+      setPrice("");
+      setThumbnail("");
+      setBrand("");
+      setCurrentInventory("");
+      setDescription("");
       productModal.onClose();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
-  }, [name, productModal]);
+  }, [
+    name,
+    price,
+    thumbnail,
+    brand,
+    currentInventory,
+    description,
+    productModal,
+  ]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -69,19 +84,6 @@ const ProductModal = () => {
         value={brand}
         onChange={(e) => setBrand(e.target.value)}
       />
-
-      <label htmlFor="categories">Choose a category:</label>
-      
-      
-
-        <select onChange={(e) => setCategory(e.target.value)} name="categories" id="categories">
-        {categories.map((category: Record<string, any>) => (
-          <option value={category.name}></option>
-        ))}
-      </select> 
-      
-
-
 
       <Input
         disabled={isLoading}

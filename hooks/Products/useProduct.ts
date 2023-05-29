@@ -1,9 +1,9 @@
 import useSWR from "swr";
 import fetcher from "@/libs/fetcher";
 
-const usePost = (categoryId: string) => {
+const useProduct = (productId: string) => {
   const { data, error, isLoading, mutate } = useSWR(
-    categoryId ? `/api/products/${categoryId}` : null,
+    productId ? `/api/products/${productId}` : null,
     fetcher
   );
 
@@ -15,4 +15,4 @@ const usePost = (categoryId: string) => {
   };
 };
 
-export default usePost;
+export default useProduct;

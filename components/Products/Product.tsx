@@ -30,9 +30,8 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
       <div>
         <div className="flex flex-row items-center gap-2">
 
-          <span className="text-neutral-500 text-sm">{data.createdAt}</span>
+          <span className="text-neutral-500 text-sm">{data.createdAt}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
         </div>
-        <div className="text-white mt-1">{data.name}</div>
         <div className="flex flex-row items-center mt-3 gap-10">
           <div
             className="

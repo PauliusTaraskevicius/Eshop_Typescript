@@ -11,15 +11,15 @@ export default async function handler(
   }
 
   try {
-    const { categoryId } = req.query;
+    const { productId } = req.query;
 
-    if (!categoryId || typeof categoryId !== "string") {
+    if (!productId || typeof productId !== "string") {
       throw new Error("Invalid ID");
     }
 
     const product = await prisma.product.findUnique({
       where: {
-        id: categoryId,
+        id: productId,
       },
       include: {
         user: true,
