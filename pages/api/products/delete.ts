@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "DELETE") {
     return res.status(405).end();
   }
 
@@ -21,33 +21,13 @@ export default async function handler(
       throw new Error("Invalid ID");
     }
 
-    const {
-      name,
-      price,
-      thumbnail,
-      brand,
-      currentInventory,
-      description,
-      category,
-    } = req.body;
-
-    const updatedProduct = await prisma.product.update({
+    const deletedProduct = await prisma.product.delete({
       where: {
         id: productId,
       },
-
-      data: {
-        name,
-        price: parseFloat(price),
-        thumbnail,
-        brand,
-        currentInventory: parseInt(currentInventory),
-        description,
-        category,
-      },
     });
 
-    return res.status(200).json(updatedProduct);
+    return res.status(200).json(deletedProduct);
   } catch (error) {
     console.log(error);
     return res.status(400).end();

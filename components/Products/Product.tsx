@@ -6,6 +6,7 @@ import Button from "../Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
+import useDeleteModal from "@/hooks/useDeleteModal";
 
 
 interface ProductItemProps {
@@ -17,6 +18,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const router = useRouter();
   const { data: currentUser } = useCurrentUser();
   const editModal = useEditModal();
+  const deleteModal = useDeleteModal()
 
   const goToProduct = useCallback(() => {
     router.push(`/products/${data.id}`);
@@ -63,7 +65,10 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               </p>
             </div>
             {currentUser ? (
+              <div>
               <Button secondary label="Edit" onClick={editModal.onOpen} />
+              <Button secondary label="Delete" onClick={deleteModal.onOpen} />
+              </div>
             ) : (
               <div></div>
             )}

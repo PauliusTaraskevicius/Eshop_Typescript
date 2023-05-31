@@ -12,9 +12,8 @@ import Input from "../Input";
 import Modal from "../Modal";
 import ImageUpload from "../ImageUpload";
 
-import { Categories } from '@prisma/client'
+import { Categories } from "@prisma/client";
 import { useRouter } from "next/router";
-
 
 const EditProductModal = () => {
   const editModal = useEditModal();
@@ -22,7 +21,7 @@ const EditProductModal = () => {
   const router = useRouter();
   const { productId } = router.query;
   const { data: fetchedPost } = useProduct(productId as string);
-  
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -52,8 +51,7 @@ const EditProductModal = () => {
       setPrice("");
       setThumbnail("");
       setBrand("");
-      setCategory(""),
-      setCurrentInventory("");
+      setCategory(""), setCurrentInventory("");
       setDescription("");
       editModal.onClose();
     } catch (error) {
@@ -62,7 +60,6 @@ const EditProductModal = () => {
       setIsLoading(false);
     }
   }, [
-    name,
     name,
     price,
     thumbnail,
@@ -100,24 +97,17 @@ const EditProductModal = () => {
         onChange={(e) => setBrand(e.target.value)}
       />
 
-      {/* <Input
-        disabled={isLoading}
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      /> */}
-
-            <select
-              id="category"
-              name="category"
-              onChange={(e) => setCategory(e.target.value as Categories)}
-            >
-              {[Categories.General, Categories.Men, Categories.Women].map((category: Categories) => {
-                return (
-                  <option value={category}>{category}</option>
-                );
-              })}
-            </select>
+      <select
+        id="category"
+        name="category"
+        onChange={(e) => setCategory(e.target.value as Categories)}
+      >
+        {[Categories.General, Categories.Men, Categories.Women].map(
+          (category: Categories) => {
+            return <option value={category}>{category}</option>;
+          }
+        )}
+      </select>
 
       <Input
         disabled={isLoading}
