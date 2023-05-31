@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../libs/prismadb";
 import serverAuth from "@/libs/serverAuth";
 
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -21,6 +22,7 @@ export default async function handler(
         brand,
         currentInventory,
         description,
+        category
       } = req.body;
 
       const product = await prisma.product.create({
@@ -31,6 +33,7 @@ export default async function handler(
           brand,
           currentInventory: parseInt(currentInventory),
           description,
+          category,
           user: {
             connect: {
               id: currentUser.id,
@@ -43,8 +46,6 @@ export default async function handler(
 
     if (req.method === "GET") {
       const { userId } = req.query;
-
-      // console.log({ userId });
 
       let products;
 

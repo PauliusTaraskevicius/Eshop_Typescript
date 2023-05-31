@@ -1,18 +1,28 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import axios from "axios";
 
 import { toast } from "react-hot-toast";
 
+import useProduct from "@/hooks/Products/useProduct";
+import useProductModal from "@/hooks/Products/useProductModal";
+import useEditModal from "@/hooks/useEditModal";
+
 import Input from "../Input";
 import Modal from "../Modal";
 import ImageUpload from "../ImageUpload";
 
-import useProductModal from "@/hooks/Products/useProductModal";
+import { Categories } from '@prisma/client'
+import { useRouter } from "next/router";
 
-const ProductModal = () => {
-  const productModal = useProductModal();
 
+const EditProductModal = () => {
+  const editModal = useEditModal();
+
+  const router = useRouter();
+  const { productId } = router.query;
+  const { data: fetchedPost } = useProduct(productId as string);
+  
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [thumbnail, setThumbnail] = useState("");
@@ -27,7 +37,7 @@ const ProductModal = () => {
     try {
       setIsLoading(true);
 
-      await axios.post("/api/products", {
+      await axios.patch("/api/products/edit?id=" + productId, {
         name,
         price,
         thumbnail,
@@ -37,14 +47,15 @@ const ProductModal = () => {
         description,
       });
 
-      toast.success("Product created");
+      toast.success("Product updated");
       setName("");
       setPrice("");
       setThumbnail("");
       setBrand("");
-      setCategory(""), setCurrentInventory("");
+      setCategory(""),
+      setCurrentInventory("");
       setDescription("");
-      productModal.onClose();
+      editModal.onClose();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -59,7 +70,7 @@ const ProductModal = () => {
     category,
     currentInventory,
     description,
-    productModal,
+    editModal,
   ]);
 
   const bodyContent = (
@@ -89,6 +100,24 @@ const ProductModal = () => {
         onChange={(e) => setBrand(e.target.value)}
       />
 
+      {/* <Input
+        disabled={isLoading}
+        placeholder="Category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      /> */}
+
+            <select
+              id="category"
+              name="category"
+              onChange={(e) => setCategory(e.target.value as Categories)}
+            >
+              {[Categories.General, Categories.Men, Categories.Women].map((category: Categories) => {
+                return (
+                  <option value={category}>{category}</option>
+                );
+              })}
+            </select>
 
       <Input
         disabled={isLoading}
@@ -126,10 +155,10 @@ const ProductModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={productModal.isOpen}
-      title="Create a product"
-      actionLabel="Create"
-      onClose={productModal.onClose}
+      isOpen={editModal.isOpen}
+      title="Edit product info"
+      actionLabel="Submit"
+      onClose={editModal.onClose}
       onSubmit={onSubmit}
       body={bodyContent}
       footer={footerContent}
@@ -137,4 +166,4 @@ const ProductModal = () => {
   );
 };
 
-export default ProductModal;
+export default EditProductModal;

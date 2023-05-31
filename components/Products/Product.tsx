@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
+import Image from "next/image";
+import Button from "../Button";
+
+import useCurrentUser from "@/hooks/useCurrentUser";
+import useEditModal from "@/hooks/useEditModal";
+
+
 interface ProductItemProps {
   data: Record<string, any>;
   userId?: string;
@@ -8,6 +15,8 @@ interface ProductItemProps {
 
 const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const router = useRouter();
+  const { data: currentUser } = useCurrentUser();
+  const editModal = useEditModal();
 
   const goToProduct = useCallback(() => {
     router.push(`/products/${data.id}`);
@@ -15,8 +24,8 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
 
   return (
     <div
-    onClick={goToProduct}
-    className="
+      onClick={goToProduct}
+      className="
       border-b-[1px] 
       border-neutral-800 
       p-5 
@@ -24,17 +33,21 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
       hover:bg-neutral-900 
       transition
     "
-  >
-    <div className="flex flex-row items-start gap-3">
-
-      <div>
-        <div className="flex flex-row items-center gap-2">
-
-          <span className="text-neutral-500 text-sm">{data.createdAt}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-        </div>
-        <div className="flex flex-row items-center mt-3 gap-10">
-          <div
-            className="
+    >
+      <div className="flex flex-row items-start gap-3">
+        <div>
+          <div className="flex flex-row items-center gap-2">
+            <span className="text-neutral-500 text-sm">{data.createdAt}</span>
+          </div>
+          <div className="flex flex-row items-center mt-3 gap-10">
+            <Image
+              width={250}
+              height={250}
+              alt="thumbnail"
+              src={data.thumbnail}
+            />
+            <div
+              className="
               flex 
               flex-row 
               items-center 
@@ -44,17 +57,21 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               transition 
               hover:text-sky-500
           "
-          >
-   
-            <p>{data.name} - {data.userId}</p>
+            >
+              <p>
+                {data.name} - Category: {data.category}
+              </p>
+            </div>
+            {currentUser ? (
+              <Button secondary label="Edit" onClick={editModal.onOpen} />
+            ) : (
+              <div></div>
+            )}
           </div>
-         
         </div>
       </div>
     </div>
-  </div>
-  )
-
+  );
 };
 
 export default Product;
