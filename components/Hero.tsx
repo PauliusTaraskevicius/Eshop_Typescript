@@ -12,7 +12,7 @@ const Hero = () => {
         <Image
           src="/images/hero.jpg"
           fill
-          style={{ objectFit: "cover" }}
+          style={{ objectFit: "cover"}}
           alt="Hero"
           unoptimized
         />

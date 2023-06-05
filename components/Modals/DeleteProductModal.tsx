@@ -30,7 +30,7 @@ const DeleteProductModal = () => {
       toast.success("Product deleted");
 
       deleteModal.onClose();
-      router.push('/')
+      router.push("/");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {

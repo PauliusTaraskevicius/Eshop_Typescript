@@ -27,7 +27,7 @@ const Navbar = () => {
   const loginModal = useLoginModal();
   const { data: currentUser } = useCurrentUser();
 
-  const productModal = useProductModal()
+  const productModal = useProductModal();
 
   const onClick = useCallback(() => {
     if (!currentUser) {
@@ -37,7 +37,6 @@ const Navbar = () => {
     router.push("/");
   }, [currentUser, loginModal, router]);
 
-
   const productOnClick = useCallback(() => {
     return productModal.onOpen();
     router.push("/");
@@ -46,25 +45,15 @@ const Navbar = () => {
   const changeChangeBackground = () => {
     if (window.scrollY >= TOP_OFFSET) {
       setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
-  };
-
-  const changeLogo = () => {
-    if (window.scrollY >= TOP_OFFSET) {
       setNavbarLogo(blacklogo);
     } else {
+      setNavbar(false);
       setNavbarLogo(whitelogo);
     }
   };
 
   useEffect(() => {
     window.addEventListener("scroll", changeChangeBackground);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeLogo);
   }, []);
 
   const toggleMobileMenu = useCallback(() => {
@@ -79,7 +68,7 @@ const Navbar = () => {
           : "duration-600 fixed z-40 mt-5 w-full transform text-white transition-[margin] ease-out lg:mt-[81px]"
       }
     >
-      <div className="text-md flex flex-row items-center py-6 lg:px-[205px]">
+      <div className="text-md flex flex-row items-center py-6 px-6 xl:px-[205px]">
         <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
         <Image
           width={25}
@@ -109,12 +98,8 @@ const Navbar = () => {
               </div>
             )}
 
-
-            <div onClick={productOnClick}>
-              <NavbarItem
-                label="Create product"
-                onClick={productModal.onOpen}
-              />
+            <div className="flex whitespace-nowrap" onClick={productOnClick}>
+              <NavbarItem label="+ Product" onClick={productModal.onOpen} />
             </div>
             <NavbarItem label="Bag" />
           </div>

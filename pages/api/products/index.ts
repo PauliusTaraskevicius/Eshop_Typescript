@@ -33,7 +33,7 @@ export default async function handler(
           brand,
           currentInventory: parseInt(currentInventory),
           description,
-          category: category.default,
+          category,
           user: {
             connect: {
               id: currentUser.id,

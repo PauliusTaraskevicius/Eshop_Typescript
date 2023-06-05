@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
 
 import axios from "axios";
 
@@ -8,10 +9,17 @@ import Input from "../Input";
 import Modal from "../Modal";
 import ImageUpload from "../ImageUpload";
 
+import useProduct from "@/hooks/Products/useProduct";
 import useProductModal from "@/hooks/Products/useProductModal";
 
+import { Categories } from "@prisma/client";
+import { data } from "autoprefixer";
+
 const ProductModal = () => {
+  const router = useRouter();
   const productModal = useProductModal();
+  const { productId } = router.query;
+  const { data: fetchedPost } = useProduct(productId as string);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -45,6 +53,7 @@ const ProductModal = () => {
       setCategory(""), setCurrentInventory("");
       setDescription("");
       productModal.onClose();
+      router.push("/");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -82,13 +91,17 @@ const ProductModal = () => {
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
-      <Input
-        disabled={isLoading}
-        placeholder="Brand"
-        value={brand}
-        onChange={(e) => setBrand(e.target.value)}
-      />
-
+      <select
+        id="category"
+        name="category"
+        onChange={(e) => setCategory(e.target.value as Categories)}
+      >
+        {[Categories.General, Categories.Men, Categories.Women].map(
+          (category: Categories) => {
+            return <option key={category} value={category}>{category}</option>;
+          }
+        )}
+      </select>
 
       <Input
         disabled={isLoading}

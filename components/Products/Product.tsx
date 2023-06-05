@@ -46,6 +46,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               width={250}
               height={250}
               alt="thumbnail"
+              style={{ width: '250px', height: '250px' }}
               src={data.thumbnail}
             />
             <div
@@ -72,6 +73,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
             ) : (
               <div></div>
             )}
+            <div>{data.description}</div>
           </div>
         </div>
       </div>

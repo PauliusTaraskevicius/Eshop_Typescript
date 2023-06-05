@@ -1,11 +1,10 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 
 import axios from "axios";
 
 import { toast } from "react-hot-toast";
 
 import useProduct from "@/hooks/Products/useProduct";
-import useProductModal from "@/hooks/Products/useProductModal";
 import useEditModal from "@/hooks/useEditModal";
 
 import Input from "../Input";
@@ -54,6 +53,7 @@ const EditProductModal = () => {
       setCategory(""), setCurrentInventory("");
       setDescription("");
       editModal.onClose();
+      router.push("/");
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -104,7 +104,7 @@ const EditProductModal = () => {
       >
         {[Categories.General, Categories.Men, Categories.Women].map(
           (category: Categories) => {
-            return <option value={category}>{category}</option>;
+            return <option key={category} value={category}>{category}</option>;
           }
         )}
       </select>
