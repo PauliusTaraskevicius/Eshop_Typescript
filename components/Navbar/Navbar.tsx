@@ -68,7 +68,7 @@ const Navbar = () => {
           : "duration-600 fixed z-40 mt-5 w-full transform text-white transition-[margin] ease-out lg:mt-[81px]"
       }
     >
-      <div className="text-md flex flex-row items-center py-6 px-6 xl:px-[205px]">
+      <div className="text-md flex flex-row items-center py-6 lg:px-6 xl:px-[205px]">
         <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
         <Image
           width={25}

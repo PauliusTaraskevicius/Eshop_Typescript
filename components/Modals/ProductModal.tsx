@@ -91,6 +91,12 @@ const ProductModal = () => {
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
+      <Input
+        disabled={isLoading}
+        placeholder="Brand"
+        value={brand}
+        onChange={(e) => setBrand(e.target.value)}
+      />
       <select
         id="category"
         name="category"
@@ -98,7 +104,11 @@ const ProductModal = () => {
       >
         {[Categories.General, Categories.Men, Categories.Women].map(
           (category: Categories) => {
-            return <option key={category} value={category}>{category}</option>;
+            return (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            );
           }
         )}
       </select>
