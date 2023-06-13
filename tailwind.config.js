@@ -4,7 +4,9 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
+  plugins: [],
   theme: {
     extend: {
       backgroundImage: {
@@ -14,5 +16,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
 };

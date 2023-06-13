@@ -38,7 +38,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
       {generallProducts.map((product: Record<string, any>) => (
         <div>
           <section className="flex flex-col md:flex-row  items-center justify-between">
-            <div className=" lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block ">
+            <div className="relative lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block ">
               <Image
                 src="/../public/images/products/memories.jpg"
                 width={720}
@@ -51,6 +51,9 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                 }
                 quality={100}
               />
+              <div className="absolute top-[50%] left-0 right-0 text-center">
+                <p className="text-white">MEMORIES OF MY JOURNEY</p>
+              </div>
             </div>
 
             <div className="relative w-full md:max-w-md lg:max-w-full md:mx-auto md:w-[40%] xl:w-[40%] px-6 py-6 lg:py-0 lg:px-0">
@@ -66,7 +69,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                   />
                 </div>
               </div>
-              <div className="absolute mt-10 xl:mt-[110px] text-center md:text-left leading-[125.4%] text-sm xl:text-lg opacity-[54%]">
+              <div className="absolute mt-10 xl:mt-[110px] text-center md:text-left leading-[125.4%] text-sm xl:text-lg opacity-[54%] w-[90%]">
                 <q>{product.description}</q>
                 <p className="underline underline-offset-4 mt-6">Discover</p>
               </div>
