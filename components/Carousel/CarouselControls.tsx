@@ -1,5 +1,7 @@
 import classNames from "classnames";
 
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+
 interface CarouselControlsProps {
   canScrollPrev: boolean;
   canScrollNext: boolean;
@@ -23,12 +25,11 @@ const CarouselControls: React.FC<CarouselControlsProps> = ({
         }}
         disabled={!canScrollPrev}
         className={classNames({
-          "px-4 py-2 text-white rounded-md": true,
-          "bg-indigo-200": !canScrollPrev,
-          "bg-indigo-400": canScrollPrev,
+          "": !canScrollPrev,
+          "": canScrollPrev,
         })}
       >
-        Prev
+        <SlArrowLeft size={30} />
       </button>
       <button
         onClick={() => {
@@ -38,12 +39,12 @@ const CarouselControls: React.FC<CarouselControlsProps> = ({
         }}
         disabled={!canScrollNext}
         className={classNames({
-          "px-4 py-2 text-white rounded-md": true,
-          "bg-indigo-200": !canScrollNext,
-          "bg-indigo-400": canScrollNext,
+          "": true,
+          "": !canScrollNext,
+          "": canScrollNext,
         })}
       >
-        Next
+        <SlArrowRight size={30} />
       </button>
     </div>
   );

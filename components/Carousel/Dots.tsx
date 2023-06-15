@@ -14,7 +14,7 @@ const Dots: React.FC<DotsProps> = ({ itemsLength, selectedIndex }) => {
         return (
           <div
             className={classNames({
-              "h-2 w-2 rounded-full transition-all duration-300 bg-indigo-400":
+              "h-2 w-2 rounded-full transition-all duration-300 bg-black mt-6":
                 true,
               // tune down the opacity if slide is not selected
               "opacity-50": !selected,

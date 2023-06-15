@@ -36,12 +36,12 @@ const Carousel = ({ children, ...options }: Props) => {
         <div className="flex">{children}</div>
       </div>
       <Dots itemsLength={length} selectedIndex={selectedIndex} />
-      <CarouselControls
+      {/* <CarouselControls
         canScrollNext={canScrollNext}
         canScrollPrev={canScrollPrev}
         onNext={() => emblaApi?.scrollNext()}
         onPrev={() => emblaApi?.scrollPrev()}
-      />
+      /> */}
     </>
   );
 };

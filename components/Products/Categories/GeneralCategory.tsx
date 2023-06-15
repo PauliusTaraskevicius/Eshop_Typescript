@@ -21,7 +21,6 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
       setScalePic(true);
     } else {
       setScalePic(false);
-      console.log(window.pageYOffset);
     }
   };
 
