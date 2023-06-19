@@ -1,20 +1,35 @@
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const SlideLeftAnimation: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const mainControls = useAnimation();
+
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+  useEffect(() => {
+    if (inView) {
+      mainControls.start({
+        x: 0,
+        transition: {
+          duration: 1,
+        },
+      });
+    }
+
+    if (!inView) {
+      mainControls.start({ x: "-100vw" });
+    }
+  }, [inView]);
+
   return (
-
-      <>
-      <motion.div
-        initial={{ opacity: 0, x: "-100vh" }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ type: "spring", duration: 1 }}
-      >
-        {children}
-      </motion.div>
-      </>
-
+    <div ref={ref}>
+      <motion.div animate={mainControls}>{children}</motion.div>
+    </div>
   );
 };
 

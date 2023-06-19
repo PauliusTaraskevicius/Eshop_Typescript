@@ -28,7 +28,9 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", scaleOnScroll);
+    setTimeout(() => {
+      window.addEventListener("scroll", scaleOnScroll);
+    }, 5000);
   }, []);
 
   const womenProducts = products.filter((product: Record<string, any>) =>
@@ -41,22 +43,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
         <div>
           <section className="relative flex flex-col md:flex-row  items-center justify-between">
             <div className=" lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block">
-              {window.scrollY >= TOP_OFFSET ? (
-                <SlideLeftAnimation>
-                  <Image
-                    src="/../public/images/products/mens_watch.jpg"
-                    width={720}
-                    height={962}
-                    alt="thumbnail"
-                    className={
-                      scalePic
-                        ? "w-full object-cover  scale-125 ease-in duration-500"
-                        : "w-full object-cover ease-out duration-500"
-                    }
-                    quality={100}
-                  />
-                </SlideLeftAnimation>
-              ) : (
+              <SlideLeftAnimation>
                 <Image
                   src="/../public/images/products/mens_watch.jpg"
                   width={720}
@@ -69,7 +56,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
                   }
                   quality={100}
                 />
-              )}
+              </SlideLeftAnimation>
             </div>
 
             <div
@@ -77,18 +64,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
     flex items-center justify-center"
             >
               <div className="w-full">
-                {window.scrollY >= TOP_OFFSET ? (
-                  <SlideUpAnimation>
-                    <Image
-                      src={product.thumbnail}
-                      width={526}
-                      height={692}
-                      alt="thumbnail"
-                      className="w-full h-full object-cover"
-                      quality={100}
-                    />
-                  </SlideUpAnimation>
-                ) : (
+                <SlideUpAnimation>
                   <Image
                     src={product.thumbnail}
                     width={526}
@@ -97,7 +73,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
                     className="w-full h-full object-cover"
                     quality={100}
                   />
-                )}
+                </SlideUpAnimation>
               </div>
 
               <div>

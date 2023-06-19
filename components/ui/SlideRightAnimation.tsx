@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const SlideUpAnimation: React.FC<{ children: React.ReactNode }> = ({
+const SlideRightAnimation: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const mainControls = useAnimation();
@@ -14,7 +14,7 @@ const SlideUpAnimation: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     if (inView) {
       mainControls.start({
-        y: 0,
+        x: 0,
         transition: {
           duration: 1,
         },
@@ -22,10 +22,9 @@ const SlideUpAnimation: React.FC<{ children: React.ReactNode }> = ({
     }
 
     if (!inView) {
-      mainControls.start({ y: "100vh" });
+      mainControls.start({ x: "100vw" });
     }
   }, [inView]);
-
   return (
     <div ref={ref}>
       <motion.div animate={mainControls}>{children}</motion.div>
@@ -33,4 +32,4 @@ const SlideUpAnimation: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export default SlideUpAnimation;
+export default SlideRightAnimation;
