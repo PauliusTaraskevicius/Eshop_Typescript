@@ -4,6 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import Button from "./Button";
 
+import { motion, useAnimation } from "framer-motion";
+
 interface ModalProps {
   isOpen?: boolean;
   onClose: () => void;
@@ -45,10 +47,42 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
+  const dropIn = {
+    hidden: {
+      // y: "-100vh",
+      scale: 0,
+      // opacity: 0,
+    },
+    visible: {
+      // y: "0",
+      scale: 1.1,
+      // opacity: 1,
+      transition: {
+        duration: 0.5,
+        type: "spring",
+        damping: 100,
+        stiffness: 500,
+      },
+    },
+    exit: {
+      // y: "100vh",
+      scale: 0,
+      // opacity: 0,
+    },
+  };
+
   return (
     <>
       {/* relative w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-10 */}
-      <div className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50">
+
+      <motion.div
+        onClick={(e) => e.stopPropagation()}
+        variants={dropIn}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50"
+      >
         <div
           className="h-full
             lg:h-auto
@@ -101,7 +135,7 @@ const Modal: React.FC<ModalProps> = ({
             {footer}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

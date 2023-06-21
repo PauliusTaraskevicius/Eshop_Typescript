@@ -1,4 +1,4 @@
-- navigation x asi pareguliuot (next hub nesicentruoja)
-- navigation create product ne vienoje eiluteje
+
 
 - nerestartint lauku editinant (kad isliktu sena info)
+- animacijos moduliam
