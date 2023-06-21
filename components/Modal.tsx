@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import Button from "./Button";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -47,7 +47,7 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
-  const dropIn = {
+  const popUp = {
     hidden: {
       // y: "-100vh",
       scale: 0,
@@ -77,7 +77,7 @@ const Modal: React.FC<ModalProps> = ({
 
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        variants={dropIn}
+        variants={popUp}
         initial="hidden"
         animate="visible"
         exit="exit"

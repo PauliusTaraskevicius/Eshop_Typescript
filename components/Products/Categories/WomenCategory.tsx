@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import useProducts from "@/hooks/Products/useProducts";
 import Product from "../Product";
@@ -65,14 +66,16 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
             >
               <div className="w-full">
                 <SlideUpAnimation>
-                  <Image
-                    src={product.thumbnail}
-                    width={526}
-                    height={692}
-                    alt="thumbnail"
-                    className="w-full h-full object-cover"
-                    quality={100}
-                  />
+                  <Link href={`products/${product.id}`}>
+                    <Image
+                      src={product.thumbnail}
+                      width={526}
+                      height={692}
+                      alt="thumbnail"
+                      className="w-full h-full object-cover"
+                      quality={100}
+                    />
+                  </Link>
                 </SlideUpAnimation>
               </div>
 
@@ -82,7 +85,9 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
                   <div className="inline-block xl:w-1/4">
                     <div className="pb-8">{product.description}</div>
                   </div>
-                  <div className="underline underline-offset-4">Shop</div>
+                  <Link href={`products/${product.id}`}>
+                    <div className="underline underline-offset-4">Shop</div>
+                  </Link>
                 </div>
               </div>
             </div>

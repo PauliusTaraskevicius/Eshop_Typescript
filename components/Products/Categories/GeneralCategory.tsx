@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import useProducts from "@/hooks/Products/useProducts";
 import Product from "../Product";
@@ -65,6 +66,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
               <div className="flex items-center justify-center">
                 <div className="w-full">
                   <SlideUpAnimation>
+                  <Link href={`products/${product.id}`}>
                     <Image
                       src={product.thumbnail}
                       width={620}
@@ -73,6 +75,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                       className="w-full h-full object-cover"
                       quality={100}
                     />
+                  </Link>
                   </SlideUpAnimation>
                 </div>
               </div>

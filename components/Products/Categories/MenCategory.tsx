@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import useProducts from "@/hooks/Products/useProducts";
 import Product from "../Product";
@@ -43,14 +44,16 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
             <div className="relative lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block">
               <div className="w-full">
                 <FadeInAnimation>
-                  <Image
-                    src={product.thumbnail}
-                    width={720}
-                    height={962}
-                    alt="thumbnail"
-                    className="w-full h-full object-cover"
-                    quality={100}
-                  />
+                  <Link href={`products/${product.id}`}>
+                    <Image
+                      src={product.thumbnail}
+                      width={720}
+                      height={962}
+                      alt="thumbnail"
+                      className="w-full h-full object-cover"
+                      quality={100}
+                    />
+                  </Link>
                 </FadeInAnimation>
               </div>
 
@@ -62,7 +65,9 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
                   <div className="inline-block xl:w-1/4">
                     <div className="pb-8">{product.description}</div>
                   </div>
-                  <div className="underline underline-offset-4">Shop</div>
+                  <Link href={`products/${product.id}`}>
+                    <div className="underline underline-offset-4">Shop</div>
+                  </Link>
                 </div>
               </div>
             </div>

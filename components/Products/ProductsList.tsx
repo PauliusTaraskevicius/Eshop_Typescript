@@ -22,7 +22,7 @@ const TOP_OFFSET = 70;
 
 const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
   const { data: products = [] } = useProducts(userId);
-
+ 
   return (
     <div>
       <WomenCategory TOP_OFFSET={TOP_OFFSET} />

@@ -1,12 +1,12 @@
 import Footer from "./Footer";
-import Hero from "./Hero";
 import Navbar from "./Navbar/Navbar";
+import ScrollProgress from "./ui/ScrollProgress";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <Hero />
+      <ScrollProgress />
       <main>{children}</main>
       <Footer />
     </div>
