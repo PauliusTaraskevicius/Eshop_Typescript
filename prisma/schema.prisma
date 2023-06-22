@@ -34,7 +34,7 @@ enum Categories {
   General @map("General")
   Men @map("Men")
   Women @map("Women")
-}
+} 
 
 model Product {
   id String @id @default(auto()) @map("_id") @db.ObjectId

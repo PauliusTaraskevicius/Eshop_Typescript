@@ -53,7 +53,8 @@ const EditProductModal = () => {
       setCategory(""), setCurrentInventory("");
       setDescription("");
       editModal.onClose();
-      router.push("/");
+      // router.push("/");
+      router.reload()
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -104,7 +105,11 @@ const EditProductModal = () => {
       >
         {[Categories.General, Categories.Men, Categories.Women].map(
           (category: Categories) => {
-            return <option key={category} value={category}>{category}</option>;
+            return (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            );
           }
         )}
       </select>

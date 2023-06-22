@@ -1,4 +1,8 @@
 
 
 - nerestartint lauku editinant (kad isliktu sena info)
-- animacijos moduliam
+
+
+- homepage image 1, 2, thumbnail image and 4 other images
+
+- karusele 'product details' nesisuka

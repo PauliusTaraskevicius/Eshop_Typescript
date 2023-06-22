@@ -21,16 +21,14 @@ const Button: React.FC<ButtonProps> = ({
     <button
       disabled={disabled}
       onClick={onClick}
-      className={`disabled:opacity-70
-        disabled:cursor-not-allowed
-        rounded-full
-        font-semibold
-        hover:opacity-80
-        transition
-        border-2
+      className={`text-base flex items-center justify-center leading-none py-4  lg:py-6 rounded-full mt-10 md:mt-[50px]
         ${fullWidth ? "w-full" : "w-fit"}
-        ${secondary ? "bg-white" : "bg-sky-500"}
-        ${secondary ? "text-black" : "text-white"}
+        ${
+          secondary
+            ? "bg-purple-700 w-[20%]  hover:bg-gray-200 transition ease-in"
+            : "bg-sky-500"
+        }
+        ${secondary ? "text-white hover:text-black " : "text-white"}
         ${secondary ? "border-black" : "border-sky-500"}
         ${large ? "text-xl" : "text-md"}
         ${large ? "px-5" : "px-4"}

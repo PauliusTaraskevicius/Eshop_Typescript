@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 
 import Image from "next/image";
+import Link from "next/link";
+
 import NavbarItem from "./NavbarItem";
 import MobileMenu from "./MobileMenu";
 
@@ -69,14 +71,17 @@ const Navbar = () => {
       }
     >
       <div className="text-md flex flex-row items-center py-6 lg:px-6 xl:px-[205px]">
-        <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
-        <Image
-          width={25}
-          height={25}
-          src={navbar || showMobileMenu ? blacklogo : navbarLogo}
-          alt="logo"
-        />
-
+        <Link href="/">
+          <div className="flex flex-row items-center">
+            <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
+            <Image
+              width={25}
+              height={25}
+              src={navbar || showMobileMenu ? blacklogo : navbarLogo}
+              alt="logo"
+            />
+          </div>
+        </Link>
         <div className="ml-8 hidden flex-row gap-7 lg:flex lg:w-full">
           <div className="flex justify-start pl-[58px]">
             <NavbarItem label="Women" />
