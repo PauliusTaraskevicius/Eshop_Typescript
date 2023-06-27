@@ -5,7 +5,6 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 import useProduct from "@/hooks/Products/useProduct";
-
 import useDeleteModal from "@/hooks/useDeleteModal";
 
 import Modal from "../Modal";
@@ -40,33 +39,19 @@ const DeleteProductModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <h1 className="text-red-500">DELETE</h1>
+      <h1 className="text-white text-center">
+        Are you sure you want to delete this product?
+      </h1>
     </div>
   );
 
-  const footerContent = (
-    <div className="text-neutral-400 text-center mt-4">
-      <p>
-        Already have an account?
-        <span
-          className="
-            text-white 
-            cursor-pointer 
-            hover:underline
-          "
-        >
-          {" "}
-          Sign in
-        </span>
-      </p>
-    </div>
-  );
+  const footerContent = <div className="pb-4"></div>;
 
   return (
     <Modal
       disabled={isLoading}
       isOpen={deleteModal.isOpen}
-      title="Are you sure you want to delete this product?"
+      title="Delete product"
       actionLabel="Submit"
       onClose={deleteModal.onClose}
       onSubmit={onSubmit}

@@ -44,9 +44,6 @@ const EditProductModal = () => {
         price,
         homepage,
         thumbnail,
-        image1,
-        image2,
-        image3,
         brand,
         category,
         currentInventory,
@@ -58,9 +55,6 @@ const EditProductModal = () => {
       setPrice("");
       setHomepage("");
       setThumbnail("");
-      setImage1("");
-      setImage2("");
-      setImage3("");
       setBrand("");
       setCategory(""), setCurrentInventory("");
       setDescription("");
@@ -77,9 +71,6 @@ const EditProductModal = () => {
     price,
     homepage,
     thumbnail,
-    image1,
-    image2,
-    image3,
     brand,
     category,
     currentInventory,
@@ -113,25 +104,6 @@ const EditProductModal = () => {
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
-      <ImageUpload
-        disabled={isLoading}
-        value={image1}
-        onChange={(image1) => setImage1(image1)}
-        label="Additional image"
-      />
-      <ImageUpload
-        disabled={isLoading}
-        value={image2}
-        onChange={(image2) => setImage2(image2)}
-        label="Additional image"
-      />
-      <ImageUpload
-        disabled={isLoading}
-        value={image3}
-        onChange={(image3) => setImage3(image3)}
-        label="Additional image"
-      />
-
       <Input
         disabled={isLoading}
         placeholder="Brand"

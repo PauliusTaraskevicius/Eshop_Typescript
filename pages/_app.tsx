@@ -10,6 +10,7 @@ import RegisterModal from "@/components/Modals/RegisterModal";
 import ProductModal from "@/components/Modals/ProductModal";
 import EditProductModal from "@/components/Modals/EditProductModal";
 import DeleteProductModal from "@/components/Modals/DeleteProductModal";
+import AddImages from "@/components/Modals/AddImages";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <LoginModal />
       <ProductModal />
       <EditProductModal />
+      <AddImages />
       <DeleteProductModal />
       <Layout>
         <Component {...pageProps} />

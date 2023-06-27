@@ -2,10 +2,12 @@ import { useState } from "react";
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
+
 import Button from "../Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
+import useAddImages from "@/hooks/useAddImages";
 import useDeleteModal from "@/hooks/useDeleteModal";
 
 import Carousel from "../Carousel/Carousel";
@@ -22,7 +24,9 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const [contactOpen, setContactOpen] = useState(false);
 
   const { data: currentUser } = useCurrentUser();
+
   const editModal = useEditModal();
+  const addImagesModal = useAddImages();
   const deleteModal = useDeleteModal();
 
   const shippingHandler = () => setShippingOpen(!shippingOpen);
@@ -32,6 +36,8 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
     data.image1,
     data.image2,
     data.image3,
+    data.image4,
+    data.image5,
   ];
 
   return (
@@ -66,18 +72,32 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
           {data.description}
         </p>
 
-        <button className="flex items-center justify-center text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/4 py-6">
-          ADD TO BAG
-          <span className="px-2 lg:px-4">{data.price}€</span>
-        </button>
+        <div className="flex justify-center items-center">
+          {" "}
+          <button className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/4 py-6">
+            ADD TO BAG
+            <span className="px-2 lg:px-4">{data.price}€</span>
+          </button>
+        </div>
 
         {currentUser ? (
-          <div className="flex gap-x-5">
-            <Button secondary large label="Edit" onClick={editModal.onOpen} />
+          <div className="flex flex-col md:flex md:flex-row justify-center items-center  gap-x-5">
             <Button
               secondary
               large
-              label="Delete"
+              label="Edit product"
+              onClick={editModal.onOpen}
+            />
+            <Button
+              secondary
+              large
+              label="Add images"
+              onClick={addImagesModal.onOpen}
+            />
+            <Button
+              secondary
+              large
+              label="Delete product"
               onClick={deleteModal.onOpen}
             />
           </div>
@@ -164,6 +184,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
                 </svg>
               </button>
             </div>
+
             <div
               className={
                 contactOpen

@@ -81,10 +81,10 @@ const Modal: React.FC<ModalProps> = ({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50"
+        className="fixed flex justify-center items-center w-full inset-0 lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto z-50 "
       >
         <div
-          className="h-full
+          className="h-full 
             lg:h-auto
             px-4
             border-0 
@@ -124,7 +124,7 @@ const Modal: React.FC<ModalProps> = ({
             </button>
           </div>
           <div className="relative px-10 flex-auto">{body}</div>
-          <div className="flex flex-col gap-x-2 pb-14 lg:pb-0 px-10">
+          <div className="flex justify-center items-center flex-col gap-x-2 pb-14 lg:pb-0 px-10">
             <Button
               disabled={disabled}
               label={actionLabel}

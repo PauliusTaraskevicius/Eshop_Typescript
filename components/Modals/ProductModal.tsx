@@ -13,7 +13,6 @@ import useProduct from "@/hooks/Products/useProduct";
 import useProductModal from "@/hooks/Products/useProductModal";
 
 import { Categories } from "@prisma/client";
-import { data } from "autoprefixer";
 
 const ProductModal = () => {
   const router = useRouter();
@@ -24,9 +23,7 @@ const ProductModal = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [homepage, setHomepage] = useState("");
-  const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
+
   const [thumbnail, setThumbnail] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
@@ -44,9 +41,6 @@ const ProductModal = () => {
         price,
         homepage,
         thumbnail,
-        image1,
-        image2,
-        image3,
         brand,
         category,
         currentInventory,
@@ -58,9 +52,6 @@ const ProductModal = () => {
       setPrice("");
       setHomepage("");
       setThumbnail("");
-      setImage1("");
-      setImage2("");
-      setImage3("");
       setBrand("");
       setCategory(""), setCurrentInventory("");
       setDescription("");
@@ -77,9 +68,6 @@ const ProductModal = () => {
     price,
     homepage,
     thumbnail,
-    image1,
-    image2,
-    image3,
     brand,
     category,
     currentInventory,
@@ -113,24 +101,6 @@ const ProductModal = () => {
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
-      <ImageUpload
-        disabled={isLoading}
-        value={image1}
-        onChange={(image1) => setImage1(image1)}
-        label="Additional image"
-      />
-      <ImageUpload
-        disabled={isLoading}
-        value={image2}
-        onChange={(image2) => setImage2(image2)}
-        label="Additional image"
-      />
-      <ImageUpload
-        disabled={isLoading}
-        value={image3}
-        onChange={(image3) => setImage3(image3)}
-        label="Additional image"
-      />
 
       <Input
         disabled={isLoading}
@@ -138,9 +108,26 @@ const ProductModal = () => {
         value={brand}
         onChange={(e) => setBrand(e.target.value)}
       />
+
       <select
         id="category"
         name="category"
+        className="
+        w-full
+        p-4 
+        text-sm
+        lg:text-xl 
+        bg-black 
+        border-2
+        border-neutral-800 
+        rounded-md
+        outline-none
+        text-gray-400
+        focus:border-2
+        transition
+        disabled:bg-neutral-900
+        disabled:opacity-60
+        disabled:cursor-not-allowed"
         onChange={(e) => setCategory(e.target.value as Categories)}
       >
         {[Categories.General, Categories.Men, Categories.Women].map(
