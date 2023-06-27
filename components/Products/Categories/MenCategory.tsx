@@ -51,7 +51,6 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
                       height={962}
                       alt="thumbnail"
                       className="w-full h-full object-cover"
-                      quality={100}
                     />
                   </Link>
                 </FadeInAnimation>
@@ -74,7 +73,7 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
             <div className=" lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block">
               <SlideRightAnimation>
                 <Image
-                  src="/../public/images/products/combo_watch.jpg"
+                  src={product.homepage}
                   width={720}
                   height={962}
                   alt="thumbnail"
@@ -83,7 +82,6 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
                       ? "w-full object-cover scale-125 ease-in duration-500"
                       : "w-full object-cover ease-out duration-500"
                   }
-                  quality={100}
                 />
               </SlideRightAnimation>
             </div>

@@ -46,7 +46,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
             <div className=" lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block">
               <SlideLeftAnimation>
                 <Image
-                  src="/../public/images/products/mens_watch.jpg"
+                  src={product.homepage}
                   width={720}
                   height={962}
                   alt="thumbnail"
@@ -55,7 +55,6 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
                       ? "w-full object-cover  scale-125 ease-in duration-500"
                       : "w-full object-cover ease-out duration-500"
                   }
-                  quality={100}
                 />
               </SlideLeftAnimation>
             </div>
@@ -73,7 +72,6 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
                       height={692}
                       alt="thumbnail"
                       className="w-full h-full object-cover"
-                      quality={100}
                     />
                   </Link>
                 </SlideUpAnimation>

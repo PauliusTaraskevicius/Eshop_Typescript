@@ -44,7 +44,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
             <div className="relative lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block ">
               <SlideRightAnimation>
                 <Image
-                  src="/../public/images/products/memories.jpg"
+                  src={product.homepage}
                   width={720}
                   height={962}
                   alt="thumbnail"
@@ -53,7 +53,6 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                       ? "w-full object-cover scale-125 ease-in duration-500"
                       : "w-full object-cover ease-out duration-500"
                   }
-                  quality={100}
                 />
               </SlideRightAnimation>
 
@@ -73,7 +72,8 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                       height={548}
                       alt="thumbnail"
                       className="w-full h-full object-cover"
-                      quality={100}
+         
+                      
                     />
                   </Link>
                   </SlideUpAnimation>

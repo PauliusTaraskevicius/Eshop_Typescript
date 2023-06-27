@@ -1,18 +1,16 @@
-import { useRouter } from "next/router";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 import Button from "../Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
 import useDeleteModal from "@/hooks/useDeleteModal";
 
-import useProducts from "@/hooks/Products/useProducts";
 import Carousel from "../Carousel/Carousel";
 
 import SlideRightAnimation from "../ui/SlideRightAnimation";
-import FadeInAnimation from "../ui/FadeInAnimation";
 
 interface ProductItemProps {
   data: Record<string, any>;
@@ -23,51 +21,41 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const [shippingOpen, setShippingOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
-  const { data: products = [] } = useProducts(userId);
-
-  const router = useRouter();
   const { data: currentUser } = useCurrentUser();
   const editModal = useEditModal();
   const deleteModal = useDeleteModal();
 
-  const goToProduct = useCallback(() => {
-    router.push(`/products/${data.id}`);
-  }, [router, data.id]);
-
   const shippingHandler = () => setShippingOpen(!shippingOpen);
   const contactHandler = () => setContactOpen(!contactOpen);
+
+  const images: string[] | StaticImageData = [
+    data.image1,
+    data.image2,
+    data.image3,
+  ];
 
   return (
     <div className="md:flex items-start justify-center py-12 pt-[150px] lg:pt-[300px] px-6">
       {/* Mobile pics */}
       <div className="md:hidden">
-        <img
-          className="w-full"
-          alt="image of a girl posing"
-          src="https://i.ibb.co/QMdWfzX/component-image-one.png"
-        />
-        <div className="flex items-center justify-between mt-3 space-x-4 md:space-x-0">
-          <img
-            alt="image-tag-one"
-            className="md:w-48 md:h-48 w-full"
-            src="https://i.ibb.co/cYDrVGh/Rectangle-245.png"
-          />
-          <img
-            alt="image-tag-one"
-            className="md:w-48 md:h-48 w-full"
-            src="https://i.ibb.co/f17NXrW/Rectangle-244.png"
-          />
-          <img
-            alt="image-tag-one"
-            className="md:w-48 md:h-48 w-full"
-            src="https://i.ibb.co/cYDrVGh/Rectangle-245.png"
-          />
-          <img
-            alt="image-tag-one"
-            className="md:w-48 md:h-48 w-full"
-            src="https://i.ibb.co/f17NXrW/Rectangle-244.png"
-          />
-        </div>
+        <Carousel>
+          {images.map((image: string | StaticImageData, i: number) => (
+            <div
+              className="relative flex justify-center items-center flex-[0_0_100%]"
+              key={i}
+            >
+              <Image
+                src={image}
+                width={320}
+                height={962}
+                loading="lazy"
+                className="object-cover rounded-lg min-w-[33%] max-h-[600px] w-full mx-2 lg:mx-10"
+                alt="image"
+                quality={100}
+              />
+            </div>
+          ))}
+        </Carousel>
       </div>
 
       <div className="xl:w-2/5 md:w-1/2 md:mt-0 mt-6">
@@ -85,15 +73,20 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
 
         {currentUser ? (
           <div className="flex gap-x-5">
-            <Button secondary label="Edit" onClick={editModal.onOpen} />
-            <Button secondary label="Delete" onClick={deleteModal.onOpen} />
+            <Button secondary large label="Edit" onClick={editModal.onOpen} />
+            <Button
+              secondary
+              large
+              label="Delete"
+              onClick={deleteModal.onOpen}
+            />
           </div>
         ) : (
           <div></div>
         )}
 
         <div>
-          <div className="py-4 mt-10 md:mt-[100px]">
+          <div className="py-4 mt-10 lg:mt-[100px]">
             <div
               data-menu
               className="flex justify-between items-center cursor-pointer"
@@ -118,9 +111,9 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
                   <path
                     d="M9 1L5 5L1 1"
                     stroke="currentColor"
-                    stroke-width="1.25"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -164,9 +157,9 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
                   <path
                     d="M9 1L5 5L1 1"
                     stroke="currentColor"
-                    stroke-width="1.25"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </button>
@@ -175,7 +168,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               className={
                 contactOpen
                   ? " pt-4 text-base leading-normal pr-12 mt-4 opacity-[54%]"
-                  : "hidden pt-4 text-base leading-normal pr-12 mt-4 "
+                  : "hidden pt-4 text-base leading-normal pr-12 mt-4"
               }
               id="sect"
             >
@@ -185,46 +178,23 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
           </div>
         </div>
         {/* Carousel */}
-        <Carousel loop>
-          <div className="relative flex justify-center items-center flex-[0_0_100%] mt-10">
-            <Image
-              src={data.thumbnail}
-              width={320}
-              height={962}
-              loading="lazy"
-              className="object-cover rounded-lg max-h-[600px] w-full mx-2 lg:mx-10"
-              alt={data.title}
-              quality={100}
-            />
-            <Image
-              src={data.thumbnail}
-              width={320}
-              height={962}
-              loading="lazy"
-              className="object-cover rounded-lg max-h-[600px] w-full mx-2 lg:mx-10"
-              alt={data.title}
-              quality={100}
-            />
-            <Image
-              src={data.thumbnail}
-              width={320}
-              height={962}
-              loading="lazy"
-              className="object-cover rounded-lg max-h-[600px] w-full mx-2 lg:mx-10"
-              alt={data.title}
-              quality={100}
-            />
-            <Image
-              src={data.thumbnail}
-              width={320}
-              height={962}
-              loading="lazy"
-              // max-h-96
-              className="object-cover rounded-lg max-h-[600px] w-full mx-2 lg:mx-10"
-              alt={data.title}
-              quality={100}
-            />
-          </div>
+        <Carousel>
+          {images.map((image: string | StaticImageData, i: number) => (
+            <div
+              className="relative hidden md:flex justify-center items-center h-64 flex-[0_0_50%] mt-0 lg:mt-10"
+              key={i}
+            >
+              <Image
+                src={image}
+                width={320}
+                height={962}
+                loading="lazy"
+                className="object-cover min-w-[33%] lg:min-w-max rounded-lg max-h-[600px] w-full mx-2 lg:mx-10"
+                alt="image"
+                quality={100}
+              />
+            </div>
+          ))}
         </Carousel>
       </div>
 
@@ -233,23 +203,11 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
           <Image
             width={720}
             height={962}
-            loading="lazy"
             className="w-full"
             // className="object-cover rounded-lg max-h-[600px] w-full px-6 lg:mx-10"
             alt={data.title}
-            quality={100}
             src={data.thumbnail}
-          />
-
-          <Image
-            width={720}
-            height={962}
-            loading="lazy"
-            className="mt-6 w-full"
-            // className="object-cover rounded-lg max-h-[600px] w-full px-6 mt-6 lg:mx-10"
-            alt={data.title}
             quality={100}
-            src={data.thumbnail}
           />
 
           <Image
@@ -258,8 +216,8 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
             className="mt-6 w-full"
             // className="object-cover rounded-lg max-h-[600px] w-full px-6 mt-6 lg:mx-10"
             alt={data.title}
+            src={data.homepage}
             quality={100}
-            src={data.thumbnail}
           />
         </SlideRightAnimation>
       </div>

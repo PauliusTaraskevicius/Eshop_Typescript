@@ -2,6 +2,14 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from "../../../libs/prismadb";
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "4mb", // Set desired value here
+    },
+  },
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -24,7 +32,13 @@ export default async function handler(
     const {
       name,
       price,
+      homepage,
       thumbnail,
+      image1,
+      image2,
+      image3,
+      image4,
+      image5,
       brand,
       currentInventory,
       description,
@@ -39,7 +53,13 @@ export default async function handler(
       data: {
         name,
         price: parseFloat(price),
+        homepage,
         thumbnail,
+        image1,
+        image2,
+        image3,
+        image4,
+        image5,
         brand,
         currentInventory: parseInt(currentInventory),
         description,

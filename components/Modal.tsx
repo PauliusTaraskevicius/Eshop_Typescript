@@ -86,6 +86,7 @@ const Modal: React.FC<ModalProps> = ({
         <div
           className="h-full
             lg:h-auto
+            px-4
             border-0 
             rounded-lg 
             shadow-lg 
@@ -107,7 +108,7 @@ const Modal: React.FC<ModalProps> = ({
               p-10 
               rounded-t"
           >
-            <h3 className="text-3xl font-semibold text-white">{title}</h3>
+            <h3 className="text-base lg:text-3xl font-semibold text-white">{title}</h3>
             <button
               className="
                   p-1 
@@ -122,8 +123,8 @@ const Modal: React.FC<ModalProps> = ({
               <AiOutlineClose size={20} />
             </button>
           </div>
-          <div className="relative p-10 flex-auto">{body}</div>
-          <div className="flex flex-col gap-2 p-10">
+          <div className="relative px-10 flex-auto">{body}</div>
+          <div className="flex flex-col gap-x-2 pb-14 lg:pb-0 px-10">
             <Button
               disabled={disabled}
               label={actionLabel}

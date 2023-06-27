@@ -40,11 +40,13 @@ model Product {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   price Float
+  homepage String
   thumbnail String
   image1 String?
   image2 String?
   image3 String?
   image4 String?
+  image5 String?
   brand String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

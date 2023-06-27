@@ -3,6 +3,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../libs/prismadb";
 import serverAuth from "@/libs/serverAuth";
 
+export const config = {
+  api: {
+    responseLimit: '30mb',
+  },
+}
+
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,18 +24,30 @@ export default async function handler(
       const {
         name,
         price,
+        homepage,
         thumbnail,
+        image1,
+        image2,
+        image3,
+        image4,
+        image5,
         brand,
         currentInventory,
         description,
-        category
+        category,
       } = req.body;
 
       const product = await prisma.product.create({
         data: {
           name,
           price: parseFloat(price),
+          homepage,
           thumbnail,
+          image1,
+          image2,
+          image3,
+          image4,
+          image5,
           brand,
           currentInventory: parseInt(currentInventory),
           description,

@@ -23,6 +23,10 @@ const ProductModal = () => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [homepage, setHomepage] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
@@ -38,7 +42,11 @@ const ProductModal = () => {
       await axios.post("/api/products", {
         name,
         price,
+        homepage,
         thumbnail,
+        image1,
+        image2,
+        image3,
         brand,
         category,
         currentInventory,
@@ -48,7 +56,11 @@ const ProductModal = () => {
       toast.success("Product created");
       setName("");
       setPrice("");
+      setHomepage("");
       setThumbnail("");
+      setImage1("");
+      setImage2("");
+      setImage3("");
       setBrand("");
       setCategory(""), setCurrentInventory("");
       setDescription("");
@@ -63,7 +75,11 @@ const ProductModal = () => {
     name,
     name,
     price,
+    homepage,
     thumbnail,
+    image1,
+    image2,
+    image3,
     brand,
     category,
     currentInventory,
@@ -87,10 +103,35 @@ const ProductModal = () => {
       />
       <ImageUpload
         disabled={isLoading}
+        value={homepage}
+        onChange={(homepage) => setHomepage(homepage)}
+        label="Upload homepage image"
+      />
+      <ImageUpload
+        disabled={isLoading}
         value={thumbnail}
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
+      <ImageUpload
+        disabled={isLoading}
+        value={image1}
+        onChange={(image1) => setImage1(image1)}
+        label="Additional image"
+      />
+      <ImageUpload
+        disabled={isLoading}
+        value={image2}
+        onChange={(image2) => setImage2(image2)}
+        label="Additional image"
+      />
+      <ImageUpload
+        disabled={isLoading}
+        value={image3}
+        onChange={(image3) => setImage3(image3)}
+        label="Additional image"
+      />
+
       <Input
         disabled={isLoading}
         placeholder="Brand"
@@ -129,8 +170,8 @@ const ProductModal = () => {
   );
 
   const footerContent = (
-    <div className="text-neutral-400 text-center mt-4">
-      <p>
+    <div className="text-neutral-400 text-center pb-4">
+      {/* <p>
         Already have an account?
         <span
           className="
@@ -142,7 +183,7 @@ const ProductModal = () => {
           {" "}
           Sign in
         </span>
-      </p>
+      </p> */}
     </div>
   );
 

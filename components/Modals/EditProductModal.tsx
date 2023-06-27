@@ -23,6 +23,10 @@ const EditProductModal = () => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [homepage, setHomepage] = useState("");
+  const [image1, setImage1] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
@@ -38,7 +42,11 @@ const EditProductModal = () => {
       await axios.patch("/api/products/edit?id=" + productId, {
         name,
         price,
+        homepage,
         thumbnail,
+        image1,
+        image2,
+        image3,
         brand,
         category,
         currentInventory,
@@ -48,13 +56,17 @@ const EditProductModal = () => {
       toast.success("Product updated");
       setName("");
       setPrice("");
+      setHomepage("");
       setThumbnail("");
+      setImage1("");
+      setImage2("");
+      setImage3("");
       setBrand("");
       setCategory(""), setCurrentInventory("");
       setDescription("");
       editModal.onClose();
       // router.push("/");
-      router.reload()
+      router.reload();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
@@ -63,7 +75,11 @@ const EditProductModal = () => {
   }, [
     name,
     price,
+    homepage,
     thumbnail,
+    image1,
+    image2,
+    image3,
     brand,
     category,
     currentInventory,
@@ -87,10 +103,35 @@ const EditProductModal = () => {
       />
       <ImageUpload
         disabled={isLoading}
+        value={homepage}
+        onChange={(homepage) => setHomepage(homepage)}
+        label="Upload homepage image"
+      />
+      <ImageUpload
+        disabled={isLoading}
         value={thumbnail}
         onChange={(thumbnail) => setThumbnail(thumbnail)}
         label="Upload cover thumbnail"
       />
+      <ImageUpload
+        disabled={isLoading}
+        value={image1}
+        onChange={(image1) => setImage1(image1)}
+        label="Additional image"
+      />
+      <ImageUpload
+        disabled={isLoading}
+        value={image2}
+        onChange={(image2) => setImage2(image2)}
+        label="Additional image"
+      />
+      <ImageUpload
+        disabled={isLoading}
+        value={image3}
+        onChange={(image3) => setImage3(image3)}
+        label="Additional image"
+      />
+
       <Input
         disabled={isLoading}
         placeholder="Brand"
@@ -130,8 +171,8 @@ const EditProductModal = () => {
   );
 
   const footerContent = (
-    <div className="text-neutral-400 text-center mt-4">
-      <p>
+    <div className="text-neutral-400 text-center pb-4">
+      {/* <p>
         Already have an account?
         <span
           className="
@@ -143,7 +184,7 @@ const EditProductModal = () => {
           {" "}
           Sign in
         </span>
-      </p>
+      </p> */}
     </div>
   );
 
