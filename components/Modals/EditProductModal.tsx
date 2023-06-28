@@ -114,6 +114,22 @@ const EditProductModal = () => {
       <select
         id="category"
         name="category"
+        className="
+        w-full
+        p-4 
+        text-sm
+        lg:text-xl 
+        bg-black 
+        border-2
+        border-neutral-800 
+        rounded-md
+        outline-none
+        text-gray-400
+        focus:border-2
+        transition
+        disabled:bg-neutral-900
+        disabled:opacity-60
+        disabled:cursor-not-allowed"
         onChange={(e) => setCategory(e.target.value as Categories)}
       >
         {[Categories.General, Categories.Men, Categories.Women].map(

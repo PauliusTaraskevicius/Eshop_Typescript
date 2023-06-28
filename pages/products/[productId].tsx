@@ -38,8 +38,8 @@ const PostView = () => {
 
   if (isLoading || !fetchedPost) {
     return (
-      <div className="flex justify-center items-center h-full">
-        <ClipLoader color="lightblue" size={80} />
+      <div className="flex justify-center items-center h-screen">
+        <ClipLoader color="blue" size={100} />
       </div>
     );
   }

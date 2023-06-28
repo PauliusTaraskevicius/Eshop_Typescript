@@ -37,7 +37,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
   );
 
   return (
-    <div>
+    <div id="general">
       {generallProducts.map((product: Record<string, any>) => (
         <div>
           <section className="flex flex-col md:flex-row  items-center justify-between">

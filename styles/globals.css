@@ -4,13 +4,11 @@
 
 :root {
   @apply h-full bg-white;
-  
 }
 
 body {
   @apply h-full bg-white;
   font-family: "Montserrat", sans-serif;
-  
 }
 
 body::-webkit-scrollbar {

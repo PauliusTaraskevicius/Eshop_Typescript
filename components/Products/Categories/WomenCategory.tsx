@@ -39,7 +39,7 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
   );
 
   return (
-    <div>
+    <div id="women">
       {womenProducts.map((product: Record<string, any>) => (
         <div>
           <section className="relative flex flex-col md:flex-row  items-center justify-between">

@@ -62,6 +62,13 @@ const Navbar = () => {
     setShowMobileMenu((current) => !current);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <nav
       className={
@@ -71,8 +78,8 @@ const Navbar = () => {
       }
     >
       <div className="text-md flex flex-row items-center py-6 lg:px-6 xl:px-[205px]">
-        <Link href="/">
-          <div className="flex flex-row items-center">
+        <Link href="/" scroll={false}>
+          <div onClick={scrollToTop} className="flex flex-row items-center">
             <span className="px-4 pr-[21px] font-normal sm:px-4">Eleganza</span>
             <Image
               width={25}
@@ -84,12 +91,21 @@ const Navbar = () => {
         </Link>
         <div className="ml-8 hidden flex-row gap-7 lg:flex lg:w-full">
           <div className="flex justify-start pl-[58px]">
-            <NavbarItem label="Women" />
+            <Link href={router.pathname != "/" ? "/" : "#women"} scroll={false}>
+              <NavbarItem label="Women" />
+            </Link>
           </div>
 
           <div className="ml-auto flex justify-center gap-52 ">
-            <NavbarItem label="Men" />
-            <NavbarItem label="About" />
+            <Link href={router.pathname != "/" ? "/" : "#men"} scroll={false}>
+              <NavbarItem label="Men" />
+            </Link>
+            <Link
+              href={router.pathname != "/" ? "/" : "#general"}
+              scroll={false}
+            >
+              <NavbarItem label="General" />
+            </Link>
           </div>
 
           <div className="ml-auto flex justify-end gap-20">

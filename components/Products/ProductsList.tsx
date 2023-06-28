@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
-import Product from "./Product";
+import { ClipLoader } from "react-spinners";
 
 import WomenCategory from "./Categories/WomenCategory";
 import MenCategory from "./Categories/MenCategory";
@@ -11,8 +9,6 @@ import GenerallCategory from "./Categories/GeneralCategory";
 import Carousel from "../Carousel/Carousel";
 
 import useProducts from "@/hooks/Products/useProducts";
-import { data } from "autoprefixer";
-
 
 interface ProductsListProps {
   userId?: string;
@@ -21,8 +17,15 @@ interface ProductsListProps {
 const TOP_OFFSET = 70;
 
 const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
-  const { data: products = [] } = useProducts(userId);
- 
+  const { data: products = [], isLoading } = useProducts(userId);
+
+  if (isLoading || !products) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ClipLoader color="blue" size={100} />
+      </div>
+    );
+  }
   return (
     <div>
       <WomenCategory TOP_OFFSET={TOP_OFFSET} />
@@ -41,7 +44,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
         </div>
 
         <Carousel loop>
-          {products.map((product: Record<string, any>, i: string) => ( 
+          {products.map((product: Record<string, any>, i: string) => (
             // 👇 style each individual slide.
             // relative - needed since we use the fill prop from next/image component
             // h-64 - arbitrary height

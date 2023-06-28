@@ -2,6 +2,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import prisma from "../../../libs/prismadb";
 
+export const config = {
+  api: {
+    responseLimit: "30mb",
+  },
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
