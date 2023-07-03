@@ -56,14 +56,15 @@ const ProductModal = () => {
       setCategory(""), setCurrentInventory("");
       setDescription("");
       productModal.onClose();
-      router.push("/");
+      // router.push("/");
+      // router.refresh();
+      router.reload();
     } catch (error) {
       toast.error("Something went wrong");
     } finally {
       setIsLoading(false);
     }
   }, [
-    name,
     name,
     price,
     homepage,

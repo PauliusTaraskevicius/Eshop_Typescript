@@ -32,7 +32,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const shippingHandler = () => setShippingOpen(!shippingOpen);
   const contactHandler = () => setContactOpen(!contactOpen);
 
-  const images: string[] | StaticImageData = [
+  let images: string[] | StaticImageData = [
     data.image1,
     data.image2,
     data.image3,
@@ -44,7 +44,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
     <div className="md:flex items-start justify-center py-12 pt-[150px] lg:pt-[300px] px-6">
       {/* Mobile pics */}
       <div className="md:hidden">
-        <Carousel>
+        {/* <Carousel>
           {images.map((image: string | StaticImageData, i: number) => (
             <div
               className="relative flex justify-center items-center flex-[0_0_100%]"
@@ -61,7 +61,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               />
             </div>
           ))}
-        </Carousel>
+        </Carousel> */}
       </div>
 
       <div className="xl:w-2/5 md:w-1/2 md:mt-0 mt-6">
@@ -206,7 +206,9 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               key={i}
             >
               <Image
-                src={image}
+                src={
+                  image ?  image
+                : "/../public/images/products/default.jpg"}
                 width={320}
                 height={962}
                 loading="lazy"

@@ -5,10 +5,12 @@ import serverAuth from "@/libs/serverAuth";
 
 export const config = {
   api: {
-    responseLimit: '30mb',
+    responseLimit: "30mb",
+    bodyParser: {
+      sizeLimit: "10mb", // Set desired value here
+    },
   },
-}
-
+};
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,11 +28,6 @@ export default async function handler(
         price,
         homepage,
         thumbnail,
-        image1,
-        image2,
-        image3,
-        image4,
-        image5,
         brand,
         currentInventory,
         description,
@@ -43,11 +40,6 @@ export default async function handler(
           price: parseFloat(price),
           homepage,
           thumbnail,
-          image1,
-          image2,
-          image3,
-          image4,
-          image5,
           brand,
           currentInventory: parseInt(currentInventory),
           description,

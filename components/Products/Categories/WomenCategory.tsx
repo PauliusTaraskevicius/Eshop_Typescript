@@ -79,9 +79,9 @@ const WomenCategory: React.FC<WomenCategoryProductProps> = ({
 
               <div>
                 <div className="absolute left-0 right-0 bottom-[13%] text-white text-center text-xs xl:text-base ">
-                  <div className="pb-3.5">{product.name}</div>
+                  <div className="pb-3.5 uppercase">{product.name}</div>
                   <div className="inline-block xl:w-1/4">
-                    <div className="pb-8">{product.description}</div>
+                    <div className="pb-8 uppercase">{product.description}</div>
                   </div>
                   <Link href={`products/${product.id}`}>
                     <div className="underline underline-offset-4">Shop</div>

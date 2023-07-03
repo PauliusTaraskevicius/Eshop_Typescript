@@ -4,11 +4,12 @@ import prisma from "../../../libs/prismadb";
 
 export const config = {
   api: {
+    responseLimit: '30mb',
     bodyParser: {
       sizeLimit: "10mb", // Set desired value here
     },
   },
-};
+}
 
 export default async function handler(
   req: NextApiRequest,
