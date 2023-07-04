@@ -10,8 +10,8 @@ import MobileMenu from "./MobileMenu";
 
 import useLoginModal from "@/hooks/useLoginModal";
 import useCurrentUser from "@/hooks/useCurrentUser";
-
 import useProductModal from "@/hooks/Products/useProductModal";
+import useCart from "@/hooks/useCart";
 
 import blacklogo from "../../public/images/black-logo.png";
 import whitelogo from "../../public/images/logo.png";
@@ -30,6 +30,8 @@ const Navbar = () => {
   const { data: currentUser } = useCurrentUser();
 
   const productModal = useProductModal();
+
+  const cart = useCart();
 
   const onClick = useCallback(() => {
     if (!currentUser) {
@@ -125,13 +127,13 @@ const Navbar = () => {
             <NavbarItem label="Bag" />
           </div>
 
-          <span
+          <span onClick={() => router.push('/cart')}
             className={
               navbar || showMobileMenu
-                ? "-ml-2 h-3 w-3 rounded-full bg-black"
-                : "-ml-2 h-3 w-3 rounded-full bg-white"
+                ? "-ml-2 h-3 w-3 rounded-full bg-black text-black"
+                : "-ml-2 h-3 w-3 rounded-full bg-white text-white"
             }
-          ></span>
+          >{cart.items.length}</span>
         </div>
 
         <div

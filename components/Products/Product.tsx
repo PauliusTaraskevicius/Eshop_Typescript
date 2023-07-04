@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
@@ -14,12 +14,16 @@ import Carousel from "../Carousel/Carousel";
 
 import SlideRightAnimation from "../ui/SlideRightAnimation";
 
+import useCart from "@/hooks/useCart";
+import { Product as ProductType } from "@/types";
+
 interface ProductItemProps {
-  data: Record<string, any>;
+  // data: Record<string, any>;
+  data: ProductType;
   userId?: string;
 }
 
-const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
+const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
   const [shippingOpen, setShippingOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
@@ -28,6 +32,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
   const editModal = useEditModal();
   const addImagesModal = useAddImages();
   const deleteModal = useDeleteModal();
+  const cart = useCart();
 
   const shippingHandler = () => setShippingOpen(!shippingOpen);
   const contactHandler = () => setContactOpen(!contactOpen);
@@ -40,18 +45,23 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
     data.image5,
   ];
 
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+  };
+
   return (
     <div className="md:flex items-start justify-center py-12 pt-[150px] lg:pt-[300px] px-6">
       {/* Mobile pics */}
       <div className="md:hidden">
-        {/* <Carousel>
+        <Carousel>
           {images.map((image: string | StaticImageData, i: number) => (
             <div
               className="relative flex justify-center items-center flex-[0_0_100%]"
               key={i}
             >
               <Image
-                src={image}
+                src={image ? image : "/../public/images/products/default.jpg"}
                 width={320}
                 height={962}
                 loading="lazy"
@@ -61,7 +71,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               />
             </div>
           ))}
-        </Carousel> */}
+        </Carousel>
       </div>
 
       <div className="xl:w-2/5 md:w-1/2 md:mt-0 mt-6">
@@ -74,14 +84,17 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
 
         <div className="flex justify-center items-center">
           {" "}
-          <button className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/4 py-6">
-            ADD TO BAG
+          <button
+            onClick={onAddToCart}
+            className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/6 py-4  lg:py-6"
+          >
+            Add to bag
             <span className="px-2 lg:px-4">{data.price}€</span>
           </button>
         </div>
 
         {currentUser ? (
-          <div className="flex flex-col md:flex md:flex-row justify-center items-center  gap-x-5">
+          <div className="flex flex-col md:flex md:flex-row justify-center items-center gap-x-5">
             <Button
               secondary
               large
@@ -206,9 +219,7 @@ const Product: React.FC<ProductItemProps> = ({ data = {}, userId }) => {
               key={i}
             >
               <Image
-                src={
-                  image ?  image
-                : "/../public/images/products/default.jpg"}
+                src={image ? image : "/../public/images/products/default.jpg"}
                 width={320}
                 height={962}
                 loading="lazy"

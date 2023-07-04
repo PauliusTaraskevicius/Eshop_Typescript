@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
         ${secondary ? "text-white hover:text-black " : "text-white"}
         ${secondary ? "border-black" : "border-sky-500"}
         ${large ? "text-sm md:text-base" : "text-md"}
-        ${large ? "px-8 w-[150px] h-[60px] lg:w-[200px] lg:h-[70px]" : "px-4"}
+        ${large ? "w-3/6" : "px-4"}
         ${large ? "py-3" : "py-2"}
         ${outline ? "bg-transparent" : ""}
         ${outline ? "border-white" : ""}
