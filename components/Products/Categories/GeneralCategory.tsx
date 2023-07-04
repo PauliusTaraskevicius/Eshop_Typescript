@@ -65,17 +65,15 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
               <div className="flex items-center justify-center">
                 <div className="w-full">
                   <SlideUpAnimation>
-                  <Link href={`products/${product.id}`}>
-                    <Image
-                      src={product.thumbnail}
-                      width={620}
-                      height={548}
-                      alt="thumbnail"
-                      className="w-full h-full object-cover"
-         
-                      
-                    />
-                  </Link>
+                    <Link href={`products/${product.id}`}>
+                      <Image
+                        src={product.thumbnail}
+                        width={620}
+                        height={548}
+                        alt="thumbnail"
+                        className="w-full h-full object-cover"
+                      />
+                    </Link>
                   </SlideUpAnimation>
                 </div>
               </div>

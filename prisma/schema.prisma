@@ -42,17 +42,10 @@ model Product {
   price Float
   homepage String
   thumbnail String
-  image1 String?
-  image2 String?
-  image3 String?
-  image4 String?
-  image5 String?
   brand String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   category Categories? @default(General)
-
   userId String @db.ObjectId
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

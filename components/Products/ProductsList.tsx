@@ -31,6 +31,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
       <WomenCategory TOP_OFFSET={TOP_OFFSET} />
       <MenCategory TOP_OFFSET="2300" />
       <GenerallCategory TOP_OFFSET="3000" />
+
       <div className="w-full mt-28 lg:my-auto">
         <div className="flex justify-center items-center h-40">
           <h2>All PRODUCTS</h2>

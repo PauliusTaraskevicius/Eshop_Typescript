@@ -7,7 +7,7 @@ import Button from "../Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
-import useAddImages from "@/hooks/useAddImages";
+
 import useDeleteModal from "@/hooks/useDeleteModal";
 
 import Carousel from "../Carousel/Carousel";
@@ -30,20 +30,13 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
   const { data: currentUser } = useCurrentUser();
 
   const editModal = useEditModal();
-  const addImagesModal = useAddImages();
   const deleteModal = useDeleteModal();
   const cart = useCart();
 
   const shippingHandler = () => setShippingOpen(!shippingOpen);
   const contactHandler = () => setContactOpen(!contactOpen);
 
-  let images: string[] | StaticImageData = [
-    data.image1,
-    data.image2,
-    data.image3,
-    data.image4,
-    data.image5,
-  ];
+  let images: string[] | StaticImageData = [];
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -86,26 +79,20 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
           {" "}
           <button
             onClick={onAddToCart}
-            className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/6 py-4  lg:py-6"
+            className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/4 py-6"
           >
-            Add to bag
+            ADD TO BAG
             <span className="px-2 lg:px-4">{data.price}€</span>
           </button>
         </div>
 
         {currentUser ? (
-          <div className="flex flex-col md:flex md:flex-row justify-center items-center gap-x-5">
+          <div className="flex flex-col md:flex md:flex-row justify-center items-center  gap-x-5">
             <Button
               secondary
               large
               label="Edit product"
               onClick={editModal.onOpen}
-            />
-            <Button
-              secondary
-              large
-              label="Add images"
-              onClick={addImagesModal.onOpen}
             />
             <Button
               secondary
@@ -219,7 +206,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
               key={i}
             >
               <Image
-                src={image ? image : "/../public/images/products/default.jpg"}
+                src="/../public/images/products/default.jpg"
                 width={320}
                 height={962}
                 loading="lazy"

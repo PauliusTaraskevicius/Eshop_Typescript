@@ -24,6 +24,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [navbarLogo, setNavbarLogo] = useState(whitelogo);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [cartItems, setCartItems] = useState(0)
 
   const router = useRouter();
   const loginModal = useLoginModal();
@@ -32,6 +33,7 @@ const Navbar = () => {
   const productModal = useProductModal();
 
   const cart = useCart();
+
 
   const onClick = useCallback(() => {
     if (!currentUser) {
@@ -57,8 +59,9 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    setCartItems(cart.items.length)
     window.addEventListener("scroll", changeChangeBackground);
-  }, []);
+  }, [cart]);
 
   const toggleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current);
@@ -133,7 +136,7 @@ const Navbar = () => {
                 ? "-ml-2 h-3 w-3 rounded-full bg-black text-black"
                 : "-ml-2 h-3 w-3 rounded-full bg-white text-white"
             }
-          >{cart.items.length}</span>
+          >{cartItems}</span>
         </div>
 
         <div
