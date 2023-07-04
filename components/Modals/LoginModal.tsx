@@ -72,7 +72,7 @@ const LoginModal = () => {
   );
 
   const footerContent = (
-    <div className="text-neutral-400 text-center mt-4">
+    <div className="text-neutral-400 text-center mt-4 py-2">
       <p>
         First time?
         <span

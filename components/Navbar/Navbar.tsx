@@ -13,6 +13,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import useProductModal from "@/hooks/Products/useProductModal";
 import useCart from "@/hooks/useCart";
 
+import { ShoppingBag } from "lucide-react";
 import blacklogo from "../../public/images/black-logo.png";
 import whitelogo from "../../public/images/logo.png";
 
@@ -24,7 +25,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [navbarLogo, setNavbarLogo] = useState(whitelogo);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [cartItems, setCartItems] = useState(0)
+  const [cartItems, setCartItems] = useState(0);
 
   const router = useRouter();
   const loginModal = useLoginModal();
@@ -33,7 +34,6 @@ const Navbar = () => {
   const productModal = useProductModal();
 
   const cart = useCart();
-
 
   const onClick = useCallback(() => {
     if (!currentUser) {
@@ -59,7 +59,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    setCartItems(cart.items.length)
+    setCartItems(cart.items.length);
     window.addEventListener("scroll", changeChangeBackground);
   }, [cart]);
 
@@ -115,28 +115,57 @@ const Navbar = () => {
 
           <div className="ml-auto flex justify-end gap-20">
             {currentUser ? (
+              <div className="flex gap-x-20">
               <div onClick={onClick}>
                 <NavbarItem label="Logout" onClick={() => signOut()} />
               </div>
+
+              <div className="flex whitespace-nowrap" onClick={productOnClick}>
+                <NavbarItem label="+ Product" onClick={productModal.onOpen} />
+              </div>
+
+              <div
+            onClick={() => router.push("/cart")}
+            className="flex items-center gap-x-4 cursor-pointer"
+          >
+            <ShoppingBag
+              size={20}
+              color={navbar || showMobileMenu ? "black " : "white "}
+            />
+            <span
+              className={
+                navbar || showMobileMenu
+                  ? "-ml-2 text-sm font-medium text-black"
+                  : "-ml-2 text-sm font-medium text-white"
+              }
+            >
+              {cartItems}
+            </span>
+          </div>
+
+              </div>
+              
             ) : (
               <div onClick={onClick}>
                 <NavbarItem label="Login" onClick={loginModal.onOpen} />
               </div>
             )}
 
-            <div className="flex whitespace-nowrap" onClick={productOnClick}>
-              <NavbarItem label="+ Product" onClick={productModal.onOpen} />
-            </div>
-            <NavbarItem label="Bag" />
+
+
+
+
           </div>
 
-          <span onClick={() => router.push('/cart')}
+          
+
+          {/* <span onClick={() => router.push('/cart')}
             className={
               navbar || showMobileMenu
                 ? "-ml-2 h-3 w-3 rounded-full bg-black text-black"
                 : "-ml-2 h-3 w-3 rounded-full bg-white text-white"
             }
-          >{cartItems}</span>
+          >{cartItems}</span> */}
         </div>
 
         <div

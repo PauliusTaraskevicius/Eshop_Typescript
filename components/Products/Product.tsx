@@ -1,4 +1,5 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState, useCallback } from "react";
+import { useRouter } from "next/router";
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
@@ -7,6 +8,10 @@ import Button from "../Button";
 
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useEditModal from "@/hooks/useEditModal";
+import useCart from "@/hooks/useCart";
+import useLoginModal from "@/hooks/useLoginModal";
+
+import { Product as ProductType } from "@/types";
 
 import useDeleteModal from "@/hooks/useDeleteModal";
 
@@ -14,8 +19,10 @@ import Carousel from "../Carousel/Carousel";
 
 import SlideRightAnimation from "../ui/SlideRightAnimation";
 
-import useCart from "@/hooks/useCart";
-import { Product as ProductType } from "@/types";
+import image1 from "../../public/images/products/gallery_img.jpg";
+import image2 from "../../public/images/products/gallery_img.jpg";
+import image3 from "../../public/images/products/gallery_img.jpg";
+import image4 from "../../public/images/products/gallery_img.jpg";
 
 interface ProductItemProps {
   // data: Record<string, any>;
@@ -32,16 +39,27 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
   const editModal = useEditModal();
   const deleteModal = useDeleteModal();
   const cart = useCart();
+  const loginModal = useLoginModal();
+
+  const router = useRouter();
 
   const shippingHandler = () => setShippingOpen(!shippingOpen);
   const contactHandler = () => setContactOpen(!contactOpen);
 
-  let images: string[] | StaticImageData = [];
+  const images: string[] | StaticImageData[] = [image1, image2, image3, image4];
 
   const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
     cart.addItem(data);
   };
+
+  const onClick = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    router.push("/");
+  }, [currentUser, loginModal, router]);
 
   return (
     <div className="md:flex items-start justify-center py-12 pt-[150px] lg:pt-[300px] px-6">
@@ -75,34 +93,41 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
           {data.description}
         </p>
 
-        <div className="flex justify-center items-center">
-          {" "}
-          <button
-            onClick={onAddToCart}
-            className="text-sm md:text-base leading-none text-white hover:text-black bg-purple-700  hover:bg-gray-200 transition ease-in rounded-full mt-10 md:mt-[100px] w-3/4 py-6"
-          >
-            ADD TO BAG
-            <span className="px-2 lg:px-4">{data.price}€</span>
-          </button>
-        </div>
-
         {currentUser ? (
-          <div className="flex flex-col md:flex md:flex-row justify-center items-center  gap-x-5">
+          <div className="flex flex-col md:flex md:flex-row justify-center items-center  gap-x-5 px-2">
             <Button
               secondary
               large
-              label="Edit product"
+              label="Add to bag"
+              onClick={(e) => onAddToCart(e)}
+            />
+            <Button
+              secondary
+              large
+              label="Edit item"
               onClick={editModal.onOpen}
             />
             <Button
               secondary
               large
-              label="Delete product"
+              label="Delete item"
               onClick={deleteModal.onOpen}
             />
           </div>
         ) : (
-          <div></div>
+          <div>
+            <div className="pt-4 text-base leading-normal mt-8 opacity-[54%] text-center">
+              In order to buy product you must be logged in.
+            </div>
+            <div onClick={onClick} className="flex justify-center items-center">
+              <Button
+                label="Login"
+                secondary
+                large
+                onClick={loginModal.onOpen}
+              />
+            </div>
+          </div>
         )}
 
         <div>
@@ -206,7 +231,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
               key={i}
             >
               <Image
-                src="/../public/images/products/default.jpg"
+                src={image ? image : "/../public/images/products/default.jpg"}
                 width={320}
                 height={962}
                 loading="lazy"
@@ -225,7 +250,6 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="w-full"
-            // className="object-cover rounded-lg max-h-[600px] w-full px-6 lg:mx-10"
             alt={data.title}
             src={data.thumbnail}
             quality={100}
@@ -235,7 +259,6 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="mt-6 w-full"
-            // className="object-cover rounded-lg max-h-[600px] w-full px-6 mt-6 lg:mx-10"
             alt={data.title}
             src={data.homepage}
             quality={100}
