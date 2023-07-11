@@ -39,7 +39,7 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
   return (
     <div id="men">
       {menProducts.map((product: Record<string, any>) => (
-        <div>
+        <div key={product.id}>
           <section className="relative flex flex-col md:flex-row  items-center justify-between">
             <div className="relative lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block">
               <div className="w-full">
@@ -49,7 +49,7 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
                       src={product.thumbnail}
                       width={720}
                       height={962}
-                      alt="thumbnail"
+                      alt={product.name}
                       className="w-full h-full object-cover"
                     />
                   </Link>
@@ -76,7 +76,7 @@ const MenCategory: React.FC<MenCategoryProductProps> = ({
                   src={product.homepage}
                   width={720}
                   height={962}
-                  alt="thumbnail"
+                  alt={product.name}
                   className={
                     scalePic
                       ? "w-full object-cover scale-125 ease-in duration-500"

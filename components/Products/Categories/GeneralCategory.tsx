@@ -39,7 +39,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
   return (
     <div id="general">
       {generallProducts.map((product: Record<string, any>) => (
-        <div>
+        <div key={product.id}>
           <section className="flex flex-col md:flex-row  items-center justify-between">
             <div className="relative lg:block w-full md:w-1/2 xl:w-[50%] overflow-hidden inline-block ">
               <SlideRightAnimation>
@@ -47,7 +47,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                   src={product.homepage}
                   width={720}
                   height={962}
-                  alt="thumbnail"
+                  alt={product.name}
                   className={
                     scalePic
                       ? "w-full object-cover scale-125 ease-in duration-500"
@@ -70,7 +70,7 @@ const GenerallCategory: React.FC<GenerallCategoryProductProps> = ({
                         src={product.thumbnail}
                         width={620}
                         height={548}
-                        alt="thumbnail"
+                        alt={product.name}
                         className="w-full h-full object-cover"
                       />
                     </Link>

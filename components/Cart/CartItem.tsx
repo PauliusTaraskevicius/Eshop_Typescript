@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { toast } from "react-hot-toast";
-import { X } from "lucide-react";
 
 import Currency from "./Currency";
 import useCart from "@/hooks/useCart";
@@ -23,13 +21,13 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
         <Image
           fill
           src={data.thumbnail}
-          alt=""
+          alt={data.name}
           className="object-cover object-center"
         />
       </div>
       <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-        <div className="absolute z-10 right-0 top-0">
-          <p onClick={onRemove}>REMOVE</p>
+        <div className="absolute z-10 right-0 bottom-0 xl:right-0 xl:top-0">
+          <p className="text-sm opacity-[54%] hover:opacity-[100%] transition cursor-pointer" onClick={onRemove}>REMOVE</p>
         </div>
         <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
           <div className="flex justify-between">

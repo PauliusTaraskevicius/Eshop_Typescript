@@ -66,7 +66,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
                   loading="lazy"
                   // max-h-96
                   className="object-cover rounded-lg max-h-[600px] w-full mx-auto lg:mx-10"
-                  alt={product.title}
+                  alt='{product.title}'
                   quality={100}
                 />
               </Link>

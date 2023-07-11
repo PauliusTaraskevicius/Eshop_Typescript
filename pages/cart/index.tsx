@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import useCart from "@/hooks/useCart";
 
+import { IoIosArrowBack } from "react-icons/io";
 
 import Container from "@/components/Cart/Container";
 import Summary from "@/components/Cart/Summary";
@@ -22,10 +24,18 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-white">
+    <div className="">
       <Container>
         <div className="px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-black">Shopping Cart</h1>
+          <div className="flex items-center gap-x-4">
+            <Link
+              href="/"
+              className="hover:bg-gray-200 rounded-full px-2 py-2 transition"
+            >
+              <IoIosArrowBack size={20} />
+            </Link>
+            <h1 className="text-sm: md:text-3xl font-bold text-black">Shopping Cart</h1>
+          </div>
           <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
             <div className="lg:col-span-7">
               {cart.items.length === 0 && (

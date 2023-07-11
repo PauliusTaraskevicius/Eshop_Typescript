@@ -98,7 +98,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             <Button
               secondary
               large
-              label="Add to bag"
+              label={`Add to bag €${data.price}`}
               onClick={(e) => onAddToCart(e)}
             />
             <Button
@@ -250,7 +250,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="w-full"
-            alt={data.title}
+            alt='image'
             src={data.thumbnail}
             quality={100}
           />
@@ -259,7 +259,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="mt-6 w-full"
-            alt={data.title}
+            alt='image'
             src={data.homepage}
             quality={100}
           />

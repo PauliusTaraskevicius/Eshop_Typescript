@@ -116,56 +116,42 @@ const Navbar = () => {
           <div className="ml-auto flex justify-end gap-20">
             {currentUser ? (
               <div className="flex gap-x-20">
-              <div onClick={onClick}>
-                <NavbarItem label="Logout" onClick={() => signOut()} />
-              </div>
+                <div onClick={onClick}>
+                  <NavbarItem label="Logout" onClick={() => signOut()} />
+                </div>
 
-              <div className="flex whitespace-nowrap" onClick={productOnClick}>
-                <NavbarItem label="+ Product" onClick={productModal.onOpen} />
-              </div>
+                <div
+                  className="flex whitespace-nowrap"
+                  onClick={productOnClick}
+                >
+                  <NavbarItem label="+ Product" onClick={productModal.onOpen} />
+                </div>
 
-              <div
-            onClick={() => router.push("/cart")}
-            className="flex items-center gap-x-4 cursor-pointer"
-          >
-            <ShoppingBag
-              size={20}
-              color={navbar || showMobileMenu ? "black " : "white "}
-            />
-            <span
-              className={
-                navbar || showMobileMenu
-                  ? "-ml-2 text-sm font-medium text-black"
-                  : "-ml-2 text-sm font-medium text-white"
-              }
-            >
-              {cartItems}
-            </span>
-          </div>
-
+                <div
+                  onClick={() => router.push("/cart")}
+                  className="flex items-center gap-x-4 cursor-pointer"
+                >
+                  <ShoppingBag
+                    size={20}
+                    color={navbar || showMobileMenu ? "black " : "white "}
+                  />
+                  <span
+                    className={
+                      navbar || showMobileMenu
+                        ? "-ml-2 text-sm font-medium text-black"
+                        : "-ml-2 text-sm font-medium text-white"
+                    }
+                  >
+                    {cartItems}
+                  </span>
+                </div>
               </div>
-              
             ) : (
               <div onClick={onClick}>
                 <NavbarItem label="Login" onClick={loginModal.onOpen} />
               </div>
             )}
-
-
-
-
-
           </div>
-
-          
-
-          {/* <span onClick={() => router.push('/cart')}
-            className={
-              navbar || showMobileMenu
-                ? "-ml-2 h-3 w-3 rounded-full bg-black text-black"
-                : "-ml-2 h-3 w-3 rounded-full bg-white text-white"
-            }
-          >{cartItems}</span> */}
         </div>
 
         <div
