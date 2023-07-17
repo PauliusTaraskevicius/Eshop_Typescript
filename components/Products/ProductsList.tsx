@@ -45,7 +45,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
         </div>
 
         <Carousel loop>
-          {products?.map((product: Record<string, any>, i: string) => (
+          {products.map((product: Record<string, any>, i: string) => (
             // 👇 style each individual slide.
             // relative - needed since we use the fill prop from next/image component
             // h-64 - arbitrary height
@@ -66,7 +66,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ userId }) => {
                   loading="lazy"
                   // max-h-96
                   className="object-cover rounded-lg max-h-[600px] w-full mx-auto lg:mx-10"
-                  alt='{product.title}'
+                  alt="{product.title}"
                   quality={100}
                 />
               </Link>
