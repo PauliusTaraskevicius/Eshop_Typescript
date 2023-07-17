@@ -1,9 +1,0 @@
-
-
-- nerestartint lauku editinant (kad isliktu sena info)
-
-- homepage image 1, 2, thumbnail image and 4 other images
-
-- karusele 'product details' nesisuka
-
-- letai krauna produktus, pabandyt homepage pasalint ir default ft src palikt

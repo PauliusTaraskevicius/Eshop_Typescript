@@ -25,8 +25,8 @@ const CarouselControls: React.FC<CarouselControlsProps> = ({
         }}
         disabled={!canScrollPrev}
         className={classNames({
-          "": !canScrollPrev,
-          "": canScrollPrev,
+          "<": !canScrollPrev,
+          ">": canScrollPrev,
         })}
       >
         <SlArrowLeft size={30} />
@@ -39,9 +39,9 @@ const CarouselControls: React.FC<CarouselControlsProps> = ({
         }}
         disabled={!canScrollNext}
         className={classNames({
-          "": true,
-          "": !canScrollNext,
-          "": canScrollNext,
+          "<": true,
+          ">": !canScrollNext,
+          "-": canScrollNext,
         })}
       >
         <SlArrowRight size={30} />
