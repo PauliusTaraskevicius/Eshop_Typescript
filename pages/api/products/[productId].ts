@@ -4,9 +4,9 @@ import prisma from "../../../libs/prismadb";
 
 export const config = {
   api: {
-    responseLimit: "100mb",
+    responseLimit: "30mb",
     bodyParser: {
-      sizeLimit: "100mb", // Set desired value here
+      sizeLimit: "10mb", // Set desired value here
     },
   },
 };
