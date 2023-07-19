@@ -1,5 +1,6 @@
 import { MouseEventHandler, useState, useCallback } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 import Image from "next/image";
 import { StaticImageData } from "next/image";
@@ -35,6 +36,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
   const [contactOpen, setContactOpen] = useState(false);
 
   const { data: currentUser } = useCurrentUser();
+  const { data: session, status } = useSession();
 
   const editModal = useEditModal();
   const deleteModal = useDeleteModal();
@@ -101,18 +103,26 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
               label={`Add to bag €${data.price}`}
               onClick={(e) => onAddToCart(e)}
             />
-            <Button
-              secondary
-              large
-              label="Edit item"
-              onClick={editModal.onOpen}
-            />
-            <Button
-              secondary
-              large
-              label="Delete item"
-              onClick={deleteModal.onOpen}
-            />
+            {session?.user?.name === "admin" ? (
+              <Button
+                secondary
+                large
+                label="Edit item"
+                onClick={editModal.onOpen}
+              />
+            ) : (
+              ""
+            )}
+            {session?.user?.name === "admin" ? (
+              <Button
+                secondary
+                large
+                label="Delete item"
+                onClick={deleteModal.onOpen}
+              />
+            ) : (
+              ""
+            )}
           </div>
         ) : (
           <div>
@@ -250,7 +260,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="w-full"
-            alt='image'
+            alt="image"
             src={data.thumbnail}
             quality={100}
           />
@@ -259,7 +269,7 @@ const Product: React.FC<ProductItemProps> = ({ data, userId }) => {
             width={720}
             height={962}
             className="mt-6 w-full"
-            alt='image'
+            alt="image"
             src={data.homepage}
             quality={100}
           />

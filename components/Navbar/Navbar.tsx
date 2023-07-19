@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +29,9 @@ const Navbar = () => {
 
   const router = useRouter();
   const loginModal = useLoginModal();
+  
   const { data: currentUser } = useCurrentUser();
+  const { data: session, status } = useSession();
 
   const productModal = useProductModal();
 
@@ -124,7 +126,14 @@ const Navbar = () => {
                   className="flex whitespace-nowrap"
                   onClick={productOnClick}
                 >
-                  <NavbarItem label="+ Product" onClick={productModal.onOpen} />
+                  {session?.user?.name === "admin" ? (
+                    <NavbarItem
+                      label="+ Product"
+                      onClick={productModal.onOpen}
+                    />
+                  ) : (
+                    ""
+                  )}
                 </div>
 
                 <div
